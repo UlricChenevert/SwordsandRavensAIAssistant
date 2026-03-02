@@ -1,0 +1,86 @@
+import { EntireGame, GameClient, GameLog, IngameGameState, OrdersRevealed } from "../../Data/GameTypes.js";
+import { LogIndexToGameRound, IGameDataExtractor, IGameLogDataExtractor } from "../../Contracts/ExtractionContracts.js";
+import { extractBidData } from "./BiddingExtraction.js";
+import { extractMilitaryData } from "./MilitaryExtraction.js";
+import { extractPlayerData } from "./PlayerExtraction.js";
+import { extractGameStateData } from "./RoundStateExtraction.js";
+
+export const extractGameData = (GameClient : GameClient) => {
+    const GameState = (<EntireGame>GameClient.entireGame).childGameState // Checked by injection script
+    const GameLogs = GameState.gameLogManager.logs
+    const TurnMapping = extractGameTurnData(GameLogs)
+
+    const extractedData = {}
+
+    Object.assign(extractedData, extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractGameStateData], TurnMapping, GameState))
+    Object.assign(extractedData, extractMiscData(GameClient, [extractPlayerData]))
+
+    return extractedData
+
+}
+
+export const extractLogData = (logs : GameLog[], Extractors : IGameLogDataExtractor<object>[], gameRoundToLogIndex : LogIndexToGameRound[], gameState : IngameGameState) => {
+    const logData = logs.map((log)=>log.data)
+
+    const finalObject = {}
+
+    Extractors.forEach((trackerLambda)=>{
+        Object.assign(finalObject, trackerLambda(logData, gameRoundToLogIndex, gameState))
+    })
+
+    return finalObject
+}
+
+export const extractGameTurnData = (logs : GameLog[]) : LogIndexToGameRound[] => {
+    const final : LogIndexToGameRound[] = []
+
+    logs.forEach((log, index)=>{
+        if (log.data.type != "turn-begin") return
+
+        let orderRevealedIndex = index
+        while (
+            logs.length > orderRevealedIndex && 
+            logs[orderRevealedIndex]?.data.type != "orders-revealed") 
+            orderRevealedIndex++
+
+        if (logs.length == orderRevealedIndex) {
+            let orderRevealedIndex = index
+
+            while (logs[orderRevealedIndex]?.data.type != "orders-revealed") orderRevealedIndex--
+        }
+        
+        
+        const orderRevealed = (<GameLog>logs[orderRevealedIndex]).data as OrdersRevealed
+
+        const ironTrack = (orderRevealed.gameSnapshot?.ironThroneTrack)? orderRevealed.gameSnapshot?.ironThroneTrack : []
+        const fiefdomTrack = (orderRevealed.gameSnapshot?.fiefdomsTrack)? orderRevealed.gameSnapshot?.fiefdomsTrack : []
+        const kingsCourtTrack = (orderRevealed.gameSnapshot?.kingsCourtTrack)? orderRevealed.gameSnapshot?.kingsCourtTrack : []
+        const victoryTrack = (orderRevealed.gameSnapshot?.housesOnVictoryTrack)? orderRevealed.gameSnapshot?.housesOnVictoryTrack : []
+
+        final.push({
+            index: index,
+            round: log.data.turn, 
+            wildlingStrength: orderRevealed.gameSnapshot?.wildlingStrength,
+            dragonStrength: orderRevealed.gameSnapshot?.dragonStrength,
+            ironThroneTrack: ironTrack,
+            fiefdomsTrack: fiefdomTrack,
+            kingsCourtTrack: kingsCourtTrack,
+            housesOnVictoryTrack: victoryTrack,
+            vsbUsed: orderRevealed.gameSnapshot?.vsbUsed,
+            ironBank: orderRevealed.gameSnapshot?.ironBank,
+        })
+    })
+
+    return final
+}
+
+export const extractMiscData = (GameClient : GameClient, Extractors : IGameDataExtractor<object>[]) => {
+    
+    const finalObject = {}
+
+    Extractors.forEach((extractionLambda)=>{
+        Object.assign(finalObject, extractionLambda(GameClient))
+    })
+
+    return finalObject
+}

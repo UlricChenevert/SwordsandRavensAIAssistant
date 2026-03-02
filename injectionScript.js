@@ -38,6 +38,16 @@
     ConnectionState2[ConnectionState2["SYNCED"] = 3] = "SYNCED";
     ConnectionState2[ConnectionState2["CLOSED"] = 4] = "CLOSED";
   })(ConnectionState || (ConnectionState = {}));
+  var possibleFactions = [
+    "baratheon",
+    "tyrell",
+    "lannister",
+    "arryn",
+    "greyjoy",
+    "targaryen",
+    "martell",
+    "stark"
+  ];
 
   // Scripts/Utilities/GameRoundUtility.js
   var findCorrespondingRound = (targetIndex, mapping) => {
@@ -82,7 +92,7 @@
   };
 
   // Scripts/Extraction Modules/MilitaryExtraction.js
-  var extractMilitaryData = (logData, gameRoundMapping) => {
+  var extractMilitaryData = (logData, gameRoundMapping, gameState) => {
     const combatLogs = [];
     logData.forEach((log, index) => {
       if (log.type !== "combat-result")
@@ -117,8 +127,13 @@
       const loserSupport = SupportDeclaredLogs.filter((support) => support.supported == loserStats.house).map((support) => support.supporter);
       const winnerRefusedSupport = SupportRefusedLogs.filter((support) => support.house == winnerStats.house).length > 0;
       const loserRefusedSupport = SupportRefusedLogs.filter((support) => support.house == loserStats.house).length > 0;
-      const winnerHouseCards = round.housesOnVictoryTrack.find((house) => house.id == AttackLog.attacker).houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
-      const loserHouseCards = round.housesOnVictoryTrack.find((house) => house.id == AttackLog.attacked).houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
+      gameState.replayManager.selectLog(index);
+      const snapshot = gameState.replayManager.selectedSnapshot;
+      const winnerHouseSnapshot = snapshot._houseMap.get(winnerStats.house);
+      const loserHouseSnapshot = snapshot._houseMap.get(loserStats.house);
+      gameState.replayManager.reset();
+      const winnerHouseCards = winnerHouseSnapshot.houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
+      const loserHouseCards = loserHouseSnapshot.houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
       const battleData = {
         Attacker: AttackLog.attacker,
         AttackerRegion: AttackLog.attackingRegion,
@@ -188,21 +203,79 @@
     return { Players: finalPlayerList };
   };
 
+  // Scripts/Extraction Modules/RoundStateExtraction.js
+  var CleanHouseSnapshotFactory = (HouseName) => {
+    return {
+      FactionName: HouseName,
+      SupplyTier: -1,
+      PowerTokens: -1,
+      LandAreas: [],
+      CastleCount: -1,
+      LandAreaCount: -1
+    };
+  };
+  var ExtractedRoundDataFactory = () => {
+    const HouseSnapshots = {};
+    possibleFactions.forEach((house) => {
+      HouseSnapshots[house] = CleanHouseSnapshotFactory(house);
+    });
+    return {
+      HouseSnapshotData: HouseSnapshots,
+      OrderTokenChoices: /* @__PURE__ */ new Map(),
+      UnitLocationSnapshotData: /* @__PURE__ */ new Map(),
+      Round: -1
+    };
+  };
+  var extractGameStateData = (logData, gameRoundMapping) => {
+    const cleanData = { Rounds: [] };
+    logData.forEach((log, index) => {
+      if (log.type != "orders-revealed")
+        return;
+      const extractedRoundData = ExtractedRoundDataFactory();
+      extractedRoundData.Round = findCorrespondingRound(index, gameRoundMapping).round;
+      if (log.gameSnapshot) {
+        log.gameSnapshot.housesOnVictoryTrack.forEach((house) => {
+          const extractedHouseRef = extractedRoundData.HouseSnapshotData[house.id];
+          extractedHouseRef.CastleCount = house.victoryPoints;
+          extractedHouseRef.LandAreaCount = house.landAreaCount;
+          extractedHouseRef.PowerTokens = house.powerTokens;
+          extractedHouseRef.SupplyTier = house.supply;
+        });
+      }
+      log.worldState.forEach((region) => {
+        if (region.order)
+          extractedRoundData.OrderTokenChoices.set(region.id, region.order.type);
+        let house;
+        if (region.units.length > 0) {
+          house = region.units[0].house;
+          extractedRoundData.UnitLocationSnapshotData.set(region.id, region.units);
+        } else if (region.controlPowerToken) {
+          house = region.controlPowerToken;
+        } else {
+          return;
+        }
+        extractedRoundData.HouseSnapshotData[house].LandAreas.push(region.id);
+      });
+      cleanData.Rounds.push(extractedRoundData);
+    });
+    return cleanData;
+  };
+
   // Scripts/Extraction Modules/ExtractGameData.js
   var extractGameData = (GameClient) => {
     const GameState = GameClient.entireGame.childGameState;
     const GameLogs = GameState.gameLogManager.logs;
     const TurnMapping = extractGameTurnData(GameLogs);
     const extractedData = {};
-    Object.assign(extractedData, extractLogData(GameLogs, [extractBidData, extractMilitaryData], TurnMapping));
+    Object.assign(extractedData, extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractGameStateData], TurnMapping, GameState));
     Object.assign(extractedData, extractMiscData(GameClient, [extractPlayerData]));
     return extractedData;
   };
-  var extractLogData = (logs, Extractors, gameRoundToLogIndex) => {
+  var extractLogData = (logs, Extractors, gameRoundToLogIndex, gameState) => {
     const logData = logs.map((log) => log.data);
     const finalObject = {};
     Extractors.forEach((trackerLambda) => {
-      Object.assign(finalObject, trackerLambda(logData, gameRoundToLogIndex));
+      Object.assign(finalObject, trackerLambda(logData, gameRoundToLogIndex, gameState));
     });
     return finalObject;
   };

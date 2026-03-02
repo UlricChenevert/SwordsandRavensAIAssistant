@@ -11,7 +11,7 @@
         "tsconfig.json": true,
         "**/__pycache__":true,
         "**/__init__.py":true,
-        "**/*.d.ts": { "when": "$(basename).ts" },
+        // "**/*.d.ts": { "when": "$(basename).ts" },
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {

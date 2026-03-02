@@ -1,0 +1,3374 @@
+{
+  "f6d1adbc-317c-4562-af80-aed15a426e0d": {
+    "TrackBids": [
+      {
+        "Track": "Iron Throne",
+        "Amount": 5,
+        "Faction": "baratheon",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 2,
+        "Faction": "arryn",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "tyrell",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "stark",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 2,
+        "Faction": "baratheon",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 2,
+        "Faction": "greyjoy",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "arryn",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "stark",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "tyrell",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 2
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 6,
+        "Faction": "tyrell",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 6,
+        "Faction": "lannister",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 5,
+        "Faction": "greyjoy",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 5,
+        "Faction": "martell",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 4,
+        "Faction": "stark",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 2,
+        "Faction": "baratheon",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 2,
+        "Faction": "arryn",
+        "Round": 2
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 2
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 5,
+        "Faction": "baratheon",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 4,
+        "Faction": "greyjoy",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 3,
+        "Faction": "arryn",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 1,
+        "Faction": "tyrell",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "stark",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 3,
+        "Faction": "stark",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 3,
+        "Faction": "arryn",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 2,
+        "Faction": "baratheon",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 2,
+        "Faction": "tyrell",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "targaryen",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "lannister",
+        "Round": 4
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 6,
+        "Faction": "lannister",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 5,
+        "Faction": "tyrell",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 4,
+        "Faction": "arryn",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 4,
+        "Faction": "baratheon",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 3,
+        "Faction": "greyjoy",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 2,
+        "Faction": "targaryen",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "stark",
+        "Round": 4
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 4
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 6,
+        "Faction": "martell",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 5,
+        "Faction": "baratheon",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "arryn",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "stark",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 7
+      },
+      {
+        "Track": "Iron Throne",
+        "Amount": 0,
+        "Faction": "tyrell",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 4,
+        "Faction": "stark",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 3,
+        "Faction": "lannister",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 2,
+        "Faction": "targaryen",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "tyrell",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 1,
+        "Faction": "baratheon",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 7
+      },
+      {
+        "Track": "Fiefdom",
+        "Amount": 0,
+        "Faction": "arryn",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 4,
+        "Faction": "tyrell",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 3,
+        "Faction": "lannister",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 2,
+        "Faction": "greyjoy",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 1,
+        "Faction": "martell",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "baratheon",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "stark",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 7
+      },
+      {
+        "Track": "King's Court",
+        "Amount": 0,
+        "Faction": "arryn",
+        "Round": 7
+      }
+    ],
+    "WildlingBids": [
+      {
+        "Amount": 2,
+        "Faction": "stark",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "targaryen",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "arryn",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "lannister",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "tyrell",
+        "Round": 3
+      },
+      {
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 3
+      },
+      {
+        "Amount": 0,
+        "Faction": "baratheon",
+        "Round": 3
+      },
+      {
+        "Amount": 2,
+        "Faction": "targaryen",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "lannister",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "greyjoy",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "tyrell",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "arryn",
+        "Round": 3
+      },
+      {
+        "Amount": 1,
+        "Faction": "martell",
+        "Round": 3
+      },
+      {
+        "Amount": 0,
+        "Faction": "baratheon",
+        "Round": 3
+      },
+      {
+        "Amount": 2,
+        "Faction": "targaryen",
+        "Round": 5
+      },
+      {
+        "Amount": 1,
+        "Faction": "arryn",
+        "Round": 5
+      },
+      {
+        "Amount": 1,
+        "Faction": "stark",
+        "Round": 5
+      },
+      {
+        "Amount": 0,
+        "Faction": "greyjoy",
+        "Round": 5
+      },
+      {
+        "Amount": 0,
+        "Faction": "tyrell",
+        "Round": 5
+      },
+      {
+        "Amount": 0,
+        "Faction": "baratheon",
+        "Round": 5
+      },
+      {
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 5
+      },
+      {
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 5
+      },
+      {
+        "Amount": 7,
+        "Faction": "arryn",
+        "Round": 6
+      },
+      {
+        "Amount": 1,
+        "Faction": "stark",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "greyjoy",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "tyrell",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "targaryen",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "lannister",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "martell",
+        "Round": 6
+      },
+      {
+        "Amount": 0,
+        "Faction": "baratheon",
+        "Round": 6
+      }
+    ],
+    "combatLogs": [
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "sunset-sea",
+          "Defender": "stark",
+          "AttackedRegion": "bay-of-ice"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "balon-greyjoy",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 6,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "victarion-greyjoy-asos",
+            "asha-greyjoy",
+            "balon-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd",
+            "euron-crows-eye-dwd"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ramsay-bolton",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 3,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "roose-bolton",
+            "eddard-stark-asos",
+            "ramsay-bolton",
+            "eddard-stark"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 2
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "highgarden",
+          "Defender": "martell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-loras-tyrell",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 5,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell",
+            "ser-loras-tyrell",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "doran-martell",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 1,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 2
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "storms-end",
+          "Defender": "tyrell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "martell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-red-viper",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 8,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "willas-tyrell",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 5,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell",
+            "ser-loras-tyrell",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "round": 2
+      },
+      {
+        "BattleData": {
+          "Attacker": "baratheon",
+          "AttackerRegion": "shipbreaker-bay",
+          "Defender": "martell",
+          "AttackedRegion": "east-summer-sea"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [
+            "tyrell"
+          ],
+          "RefusedSupport": true,
+          "GarrisonStrength": 0,
+          "HouseCard": "stannis-baratheon-dwd",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 5,
+          "HouseCardSelection": [
+            "rayder",
+            "salladhor-saan",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow",
+            "stannis-baratheon-dwd"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "areo-hotah-dwd",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 5,
+          "HouseCardSelection": [
+            "quentyn-martell",
+            "arianne-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 3
+      },
+      {
+        "BattleData": {
+          "Attacker": "arryn",
+          "AttackerRegion": "the-narrow-sea",
+          "Defender": "stark",
+          "AttackedRegion": "the-bite"
+        },
+        "WinnerData": {
+          "House": "arryn",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "littlefinger",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 5,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "anya-waynwood",
+            "lothor-brune",
+            "nestor-royce",
+            "ser-vardis-egen",
+            "littlefinger",
+            "lysa-arryn-mod"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "eddard-stark",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 5,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "roose-bolton",
+            "eddard-stark-asos",
+            "eddard-stark"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 3
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "oldtown",
+          "Defender": "martell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 5,
+          "ArmyUnits": [
+            "siege-engine",
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-garlan-tyrell",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 8,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "arianne-martell",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 7,
+          "HouseCardSelection": [
+            "quentyn-martell",
+            "arianne-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 3
+      },
+      {
+        "BattleData": {
+          "Attacker": "baratheon",
+          "AttackerRegion": "kings-landing",
+          "Defender": "martell",
+          "AttackedRegion": "sunspear"
+        },
+        "WinnerData": {
+          "House": "martell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 2,
+          "HouseCard": "quentyn-martell",
+          "HouseCardStrength": 5,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 10,
+          "HouseCardSelection": [
+            "rayder",
+            "salladhor-saan",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "baratheon",
+          "OrderBonus": 1,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-davos-seaworth",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 8,
+          "HouseCardSelection": [
+            "quentyn-martell",
+            "nymeria-sand-asos",
+            "obara-sand"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "the-reach",
+          "Defender": "lannister",
+          "AttackedRegion": "blackwater"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "footman",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "paxter-redwyne",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 6,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "lannister",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "tyrion-lannister",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 6,
+          "HouseCardSelection": [
+            "qyburn",
+            "tyrion-lannister",
+            "ser-addam-marbrand",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "stark",
+          "AttackerRegion": "port-of-white-harbor",
+          "Defender": "arryn",
+          "AttackedRegion": "the-bite"
+        },
+        "WinnerData": {
+          "House": "stark",
+          "OrderType": "sea-march",
+          "OrderBonus": -1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "roose-bolton",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 1,
+          "TidesOfBattleCard": "three",
+          "Total": 6,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "roose-bolton",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "arryn",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "anya-waynwood",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 6,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "anya-waynwood",
+            "lothor-brune",
+            "nestor-royce",
+            "ser-vardis-egen",
+            "lysa-arryn-mod"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "targaryen",
+          "AttackerRegion": "bay-of-pentos",
+          "Defender": "baratheon",
+          "AttackedRegion": "shipbreaker-bay"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [
+            "arryn"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "salladhor-saan",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 8,
+          "HouseCardSelection": [
+            "missandei",
+            "captain-groleo",
+            "rakharo",
+            "xaro-xhoan-daxos",
+            "gray-worm",
+            "arstan-whitebeard",
+            "daenerys-targaryen-b"
+          ],
+          "FiefdomTrackPosition": 7
+        },
+        "LoserData": {
+          "House": "targaryen",
+          "OrderBonus": 1,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 1,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "xaro-xhoan-daxos",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 7,
+          "HouseCardSelection": [
+            "rayder",
+            "salladhor-saan",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "seagard",
+          "Defender": "stark",
+          "AttackedRegion": "castle-black"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "victarion-greyjoy-asos",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 5,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "victarion-greyjoy-asos",
+            "asha-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd",
+            "euron-crows-eye-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "reek",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 3,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "roose-bolton",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "arryn",
+          "AttackerRegion": "the-eyrie",
+          "Defender": "baratheon",
+          "AttackedRegion": "crackclaw-point"
+        },
+        "WinnerData": {
+          "House": "arryn",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-vardis-egen",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 13,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "anya-waynwood",
+            "lothor-brune",
+            "nestor-royce",
+            "ser-vardis-egen",
+            "lysa-arryn-mod"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "LoserData": {
+          "House": "baratheon",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-davos-seaworth-dwd",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 6,
+          "HouseCardSelection": [
+            "rayder",
+            "salladhor-saan",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "port-of-sunspear",
+          "Defender": "baratheon",
+          "AttackedRegion": "east-summer-sea"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [
+            "tyrell"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "jon-snow",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 12,
+          "HouseCardSelection": [
+            "quentyn-martell",
+            "nymeria-sand-asos",
+            "obara-sand"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "obara-sand",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 10,
+          "HouseCardSelection": [
+            "rayder",
+            "salladhor-saan",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "pyke",
+          "Defender": "stark",
+          "AttackedRegion": "winterfell"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 8,
+          "ArmyUnits": [
+            "siege-engine",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "euron-crows-eye-dwd",
+          "HouseCardStrength": 5,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 15,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "victarion-greyjoy-asos",
+            "asha-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd",
+            "euron-crows-eye-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 2,
+          "HouseCard": "ramsay-bolton",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 14,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "roose-bolton",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "searoad-marches",
+          "Defender": "tyrell",
+          "AttackedRegion": "blackwater"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-addam-marbrand",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 10,
+          "HouseCardSelection": [
+            "qyburn",
+            "tyrion-lannister",
+            "ser-addam-marbrand",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "footman",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "queen-of-thorns-dwd",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 4,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 4
+      },
+      {
+        "BattleData": {
+          "Attacker": "baratheon",
+          "AttackerRegion": "dragonstone",
+          "Defender": "arryn",
+          "AttackedRegion": "crackclaw-point"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 7,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "melisandre-dwd",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 13,
+          "HouseCardSelection": [
+            "rayder",
+            "melisandre-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "arryn",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "nestor-royce",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 6,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "lothor-brune",
+            "nestor-royce",
+            "lysa-arryn-mod"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "winterfell",
+          "Defender": "stark",
+          "AttackedRegion": "moat-cailin"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 10,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "asha-greyjoy-asos",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 14,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "asha-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "knight",
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "reek",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 5,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "highgarden",
+          "Defender": "lannister",
+          "AttackedRegion": "searoad-marches"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "mace-tyrell-dwd",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 11,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "lannister",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "qyburn",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 11,
+          "HouseCardSelection": [
+            "qyburn",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "yronwood",
+          "Defender": "baratheon",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "martell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 1,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "nymeria-sand-asos",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 8,
+          "HouseCardSelection": [
+            "nymeria-sand-asos"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "baratheon",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "rayder",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 0,
+          "HouseCardSelection": [
+            "rayder",
+            "melisandre-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "stark",
+          "AttackerRegion": "widows-watch",
+          "Defender": "greyjoy",
+          "AttackedRegion": "moat-cailin"
+        },
+        "WinnerData": {
+          "House": "stark",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ramsay-bolton",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 10,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "greyjoy",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "victarion-greyjoy-dwd",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 9,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "asha-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "stoney-sept",
+          "Defender": "tyrell",
+          "AttackedRegion": "searoad-marches"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-minus-one",
+          "OrderBonus": -1,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-gregor-clegane",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 10,
+          "HouseCardSelection": [
+            "qyburn",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "margaery-tyrell-dwd",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 5,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "port-of-sunspear",
+          "Defender": "baratheon",
+          "AttackedRegion": "east-summer-sea"
+        },
+        "WinnerData": {
+          "House": "martell",
+          "OrderType": "sea-march",
+          "OrderBonus": -1,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "obara-sand",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 7,
+          "HouseCardSelection": [
+            "nymeria-sand-asos"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "baratheon",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "salladhor-saan",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 4,
+          "HouseCardSelection": [
+            "rayder",
+            "melisandre-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "stark",
+          "AttackerRegion": "the-bite",
+          "Defender": "arryn",
+          "AttackedRegion": "the-narrow-sea"
+        },
+        "WinnerData": {
+          "House": "stark",
+          "OrderType": "sea-march",
+          "OrderBonus": -1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 5,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "catelyn-stark-asos",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 9,
+          "HouseCardSelection": [
+            "reek",
+            "catelyn-stark-asos",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "arryn",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "lysa-arryn-mod",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 8,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "lothor-brune",
+            "nestor-royce",
+            "lysa-arryn-mod"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "dornish-marches",
+          "Defender": "lannister",
+          "AttackedRegion": "the-reach"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-loras-tyrell",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 10,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "lannister",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-hound",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 5,
+          "HouseCardSelection": [
+            "qyburn",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "the-reach",
+          "Defender": "lannister",
+          "AttackedRegion": "blackwater"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 0,
+          "ArmyUnits": [],
+          "WoundedUnits": [
+            "knight"
+          ],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-jaime-lannister-asos",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 6,
+          "HouseCardSelection": [
+            "margaery-tyrell-dwd",
+            "mace-tyrell-dwd"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 0,
+          "ArmyUnits": [
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "mace-tyrell-dwd",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 4,
+          "HouseCardSelection": [
+            "qyburn",
+            "the-hound",
+            "ser-ilyn-payne",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 5
+      },
+      {
+        "BattleData": {
+          "Attacker": "baratheon",
+          "AttackerRegion": "kings-landing",
+          "Defender": "martell",
+          "AttackedRegion": "storms-end"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "stannis-baratheon-dwd",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 6,
+          "HouseCardSelection": [
+            "rayder",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow",
+            "stannis-baratheon-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "doran-martell",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 2,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "arryn",
+          "AttackerRegion": "port-of-the-eyrie",
+          "Defender": "stark",
+          "AttackedRegion": "the-narrow-sea"
+        },
+        "WinnerData": {
+          "House": "stark",
+          "OrderType": "march-minus-one",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 10,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "reek",
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 12,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc",
+            "lothor-brune"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "LoserData": {
+          "House": "arryn",
+          "OrderBonus": -1,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "lothor-brune",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 3,
+          "HouseCardSelection": [
+            "reek",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "oldtown",
+          "Defender": "martell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 6,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "queen-of-thorns-dwd",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 13,
+          "HouseCardSelection": [
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "areo-hotah-dwd",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 8,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "sunspear",
+          "Defender": "tyrell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "martell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-red-viper",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 10,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "willas-tyrell",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 8,
+          "HouseCardSelection": [
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "stark",
+          "AttackerRegion": "moat-cailin",
+          "Defender": "greyjoy",
+          "AttackedRegion": "seagard"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march-minus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [
+            "lannister"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "asha-greyjoy",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 8,
+          "HouseCardSelection": [
+            "reek",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": -1,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-blackfish",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 2,
+          "HouseCardSelection": [
+            "asha-greyjoy"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "the-boneway",
+          "Defender": "targaryen",
+          "AttackedRegion": "yronwood"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-ilyn-payne",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 8,
+          "HouseCardSelection": [
+            "ser-ilyn-payne"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "targaryen",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "dragon"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "daenerys-targaryen-b",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 8,
+          "HouseCardSelection": [
+            "missandei",
+            "captain-groleo",
+            "rakharo",
+            "gray-worm",
+            "arstan-whitebeard",
+            "daenerys-targaryen-b"
+          ],
+          "FiefdomTrackPosition": 7
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "highgarden",
+          "Defender": "martell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march-plus-one",
+          "OrderBonus": 1,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-garlan-tyrell",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 11,
+          "HouseCardSelection": [
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "quentyn-martell",
+          "HouseCardStrength": 6,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 10,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "princes-pass",
+          "Defender": "lannister",
+          "AttackedRegion": "yronwood"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-minus-one",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-hound",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 6,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "arianne-martell",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": -1,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "arianne-martell",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 4,
+          "HouseCardSelection": [
+            "ser-ilyn-payne"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "stark",
+          "AttackerRegion": "white-harbor",
+          "Defender": "targaryen",
+          "AttackedRegion": "crackclaw-point"
+        },
+        "WinnerData": {
+          "House": "targaryen",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "dragon"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [
+            "baratheon"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "gray-worm",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 7,
+          "HouseCardSelection": [
+            "reek",
+            "the-blackfish",
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [
+            "lannister",
+            "arryn"
+          ],
+          "RefusedSupport": true,
+          "GarrisonStrength": 0,
+          "HouseCard": "ramsay-bolton",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 6,
+          "HouseCardSelection": [
+            "missandei",
+            "captain-groleo",
+            "rakharo",
+            "gray-worm",
+            "arstan-whitebeard",
+            "daenerys-targaryen-b"
+          ],
+          "FiefdomTrackPosition": 7
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "searoad-marches",
+          "Defender": "tyrell",
+          "AttackedRegion": "the-reach"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-minus-one",
+          "OrderBonus": -1,
+          "ArmyStrength": 6,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "tyrion-lannister",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 8,
+          "HouseCardSelection": [
+            "ser-ilyn-payne"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "tyrell",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": null,
+          "HouseCardStrength": 0,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 3,
+          "HouseCardSelection": [
+            "queen-of-thorns-dwd",
+            "paxter-redwyne",
+            "ser-garlan-tyrell",
+            "willas-tyrell"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 6
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "princes-pass",
+          "Defender": "tyrell",
+          "AttackedRegion": "starfall"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march-minus-one",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "paxter-redwyne",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 9,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": -1,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "knight",
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "the-red-viper",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 7,
+          "HouseCardSelection": [
+            "paxter-redwyne"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "winterfell",
+          "Defender": "stark",
+          "AttackedRegion": "moat-cailin"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 2,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "euron-crows-eye-dwd",
+          "HouseCardStrength": 5,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 12,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "victarion-greyjoy-asos",
+            "balon-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd",
+            "euron-crows-eye-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "eddard-stark-asos",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 9,
+          "HouseCardSelection": [
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "the-reach",
+          "Defender": "targaryen",
+          "AttackedRegion": "the-boneway"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march-minus-one",
+          "OrderBonus": -1,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [
+            "tyrell",
+            "martell"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-gregor-clegane",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 8,
+          "HouseCardSelection": [
+            "qyburn",
+            "ser-addam-marbrand",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "LoserData": {
+          "House": "targaryen",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "dragon"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "arstan-whitebeard",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "skull",
+          "Total": 6,
+          "HouseCardSelection": [
+            "missandei",
+            "captain-groleo",
+            "rakharo",
+            "arstan-whitebeard"
+          ],
+          "FiefdomTrackPosition": 7
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "martell",
+          "AttackerRegion": "east-summer-sea",
+          "Defender": "baratheon",
+          "AttackedRegion": "shipbreaker-bay"
+        },
+        "WinnerData": {
+          "House": "baratheon",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 6,
+          "SupportingFactions": [
+            "targaryen"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "jon-snow",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 12,
+          "HouseCardSelection": [
+            "doran-martell",
+            "quentyn-martell",
+            "nymeria-sand-asos",
+            "obara-sand",
+            "areo-hotah-dwd",
+            "the-red-viper"
+          ],
+          "FiefdomTrackPosition": 5
+        },
+        "LoserData": {
+          "House": "martell",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "areo-hotah-dwd",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 9,
+          "HouseCardSelection": [
+            "rayder",
+            "ser-davos-seaworth-dwd",
+            "melisandre-dwd",
+            "ser-davos-seaworth",
+            "jon-snow"
+          ],
+          "FiefdomTrackPosition": 3
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "arryn",
+          "AttackerRegion": "port-of-the-eyrie",
+          "Defender": "stark",
+          "AttackedRegion": "the-narrow-sea"
+        },
+        "WinnerData": {
+          "House": "stark",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 7,
+          "SupportingFactions": [
+            "targaryen",
+            "baratheon"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "eddard-stark",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 13,
+          "HouseCardSelection": [
+            "lysa-arryn-ffc"
+          ],
+          "FiefdomTrackPosition": 6
+        },
+        "LoserData": {
+          "House": "arryn",
+          "OrderBonus": 0,
+          "ArmyStrength": 3,
+          "ArmyUnits": [
+            "ship",
+            "ship",
+            "ship"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "bronn",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 7,
+          "HouseCardSelection": [
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "starfall",
+          "Defender": "lannister",
+          "AttackedRegion": "searoad-marches"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 6,
+          "ArmyUnits": [
+            "knight",
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 3,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-loras-tyrell",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 13,
+          "HouseCardSelection": [
+            "paxter-redwyne"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "lannister",
+          "OrderBonus": 0,
+          "ArmyStrength": 2,
+          "ArmyUnits": [
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ser-addam-marbrand",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "fortification",
+          "Total": 4,
+          "HouseCardSelection": [
+            "qyburn",
+            "ser-addam-marbrand",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "greyjoy",
+          "AttackerRegion": "pyke",
+          "Defender": "stark",
+          "AttackedRegion": "winterfell"
+        },
+        "WinnerData": {
+          "House": "greyjoy",
+          "OrderType": "march-minus-one",
+          "OrderBonus": -1,
+          "ArmyStrength": 6,
+          "ArmyUnits": [
+            "knight",
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 4,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "balon-greyjoy",
+          "HouseCardStrength": 2,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "two",
+          "Total": 13,
+          "HouseCardSelection": [
+            "aeron-damphair",
+            "victarion-greyjoy-asos",
+            "balon-greyjoy",
+            "asha-greyjoy-asos",
+            "victarion-greyjoy-dwd",
+            "euron-crows-eye-dwd"
+          ],
+          "FiefdomTrackPosition": 2
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 5,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "ramsay-bolton",
+          "HouseCardStrength": 1,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 10,
+          "HouseCardSelection": [
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "lannister",
+          "AttackerRegion": "blackwater",
+          "Defender": "stark",
+          "AttackedRegion": "crackclaw-point"
+        },
+        "WinnerData": {
+          "House": "lannister",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 4,
+          "ArmyUnits": [
+            "siege-engine"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 5,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "qyburn",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "zero",
+          "Total": 13,
+          "HouseCardSelection": [
+            "qyburn",
+            "ser-addam-marbrand",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "LoserData": {
+          "House": "stark",
+          "OrderBonus": 0,
+          "ArmyStrength": 0,
+          "ArmyUnits": [],
+          "WoundedUnits": [
+            "footman"
+          ],
+          "SupportStrength": 5,
+          "SupportingFactions": [
+            "baratheon"
+          ],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "catelyn-stark-asos",
+          "HouseCardStrength": 3,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 9,
+          "HouseCardSelection": [
+            "eddard-stark-asos"
+          ],
+          "FiefdomTrackPosition": 0
+        },
+        "round": 7
+      },
+      {
+        "BattleData": {
+          "Attacker": "tyrell",
+          "AttackerRegion": "searoad-marches",
+          "Defender": "lannister",
+          "AttackedRegion": "lannisport"
+        },
+        "WinnerData": {
+          "House": "tyrell",
+          "OrderType": "march",
+          "OrderBonus": 0,
+          "ArmyStrength": 6,
+          "ArmyUnits": [
+            "knight",
+            "knight",
+            "knight"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 0,
+          "HouseCard": "mace-tyrell-dwd",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "sword",
+          "Total": 11,
+          "HouseCardSelection": [
+            "paxter-redwyne"
+          ],
+          "FiefdomTrackPosition": 4
+        },
+        "LoserData": {
+          "House": "lannister",
+          "OrderBonus": 0,
+          "ArmyStrength": 1,
+          "ArmyUnits": [
+            "footman"
+          ],
+          "WoundedUnits": [],
+          "SupportStrength": 0,
+          "SupportingFactions": [],
+          "RefusedSupport": false,
+          "GarrisonStrength": 2,
+          "HouseCard": "ser-jaime-lannister-asos",
+          "HouseCardStrength": 4,
+          "ValyrianSteelBlade": 0,
+          "TidesOfBattleCard": "three",
+          "Total": 10,
+          "HouseCardSelection": [
+            "qyburn",
+            "ser-addam-marbrand",
+            "ser-gregor-clegane",
+            "ser-jaime-lannister-asos"
+          ],
+          "FiefdomTrackPosition": 1
+        },
+        "round": 7
+      }
+    ],
+    "Players": [
+      {
+        "playerID": "6bb96e1c-8541-438b-9a01-185175940339",
+        "playerName": "Porterhouse"
+      },
+      {
+        "playerID": "dacc25c1-f779-42dc-a8c6-92aec1b6b70c",
+        "playerName": "nheembrock"
+      },
+      {
+        "playerID": "0cef6fba-5c98-4368-9451-f0076084527f",
+        "playerName": "starkey.chris"
+      },
+      {
+        "playerID": "46307669-e778-4b93-89f3-b47ebbff062f",
+        "playerName": "ActuallyBiz"
+      },
+      {
+        "playerID": "cc7f9285-e637-459b-8760-62cba5ba8158",
+        "playerName": "rboester"
+      },
+      {
+        "playerID": "4bced986-78a2-4caf-98da-4df9c556a0a9",
+        "playerName": "ghostbust555"
+      },
+      {
+        "playerID": "5cafeb39-ee2e-45ba-b432-5ab256c9d3f6",
+        "playerName": "wulricchenevert"
+      }
+    ]
+  }
+}
