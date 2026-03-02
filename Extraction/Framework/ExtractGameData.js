@@ -1,7 +1,7 @@
-import { extractBidData } from "./BiddingExtraction.js";
-import { extractMilitaryData } from "./MilitaryExtraction.js";
-import { extractPlayerData } from "./PlayerExtraction.js";
-import { extractGameStateData } from "./RoundStateExtraction.js";
+import { extractBidData } from "../Modules/BiddingExtraction.js";
+import { extractMilitaryData } from "../Modules/MilitaryExtraction.js";
+import { extractPlayerData } from "../Modules/PlayerExtraction.js";
+import { extractGameStateData } from "../Modules/RoundStateExtraction.js";
 export const extractGameData = (GameClient) => {
     const GameState = GameClient.entireGame.childGameState; // Checked by injection script
     const GameLogs = GameState.gameLogManager.logs;

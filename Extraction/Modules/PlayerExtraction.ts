@@ -2,7 +2,10 @@ import { GameClient, IngameGameState } from "../../Data/GameTypes.js"
 import { IGameDataExtractor, PlayerExtraction } from "../../Contracts/ExtractionContracts.js"
 
 export const extractPlayerData : IGameDataExtractor<PlayerExtraction> = (client : GameClient) => {
-    const GameState : IngameGameState = client.entireGame.childGameState
+    const GameState : IngameGameState | undefined = client.entireGame?.childGameState
+    if (GameState === undefined) 
+        throw "Cannot fetch player list!"
+
     const finalPlayerList : {playerID:string, playerName: string}[] = []
     
     GameState.players.forEach(playerEntry=>{

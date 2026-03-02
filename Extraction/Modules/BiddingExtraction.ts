@@ -1,5 +1,5 @@
 import { tracksMapping } from "../../Data/GameConstants.js";
-import { Factions, GameLogData } from "../../Data/GameTypes.js";
+import { BidTracks, Factions, GameLogData } from "../../Data/GameTypes.js";
 import { CleanBiddingData, ExtractedBidData, IGameLogDataExtractor, WildingTrackData } from "../../Contracts/ExtractionContracts.js";
 import { findCorrespondingRound } from "../../Utilities/GameRoundUtility.js";
 
@@ -15,7 +15,7 @@ export const extractBidData: IGameLogDataExtractor<ExtractedBidData> = (logData:
         log.results.forEach((bidAmountInstance) => {
             bidAmountInstance[1].forEach((factionBidInstance) => {
                 trackBids.push({
-                    Track: tracksMapping[log.trackerI],
+                    Track: tracksMapping[log.trackerI] as BidTracks,
                     Amount: bidAmountInstance[0],
                     Faction: factionBidInstance as Factions,
                     Round: findCorrespondingRound(index, gameRoundMapping).round

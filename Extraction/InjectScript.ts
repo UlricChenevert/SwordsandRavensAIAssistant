@@ -9,8 +9,8 @@
 // ==/UserScript==
 
 import { GameClient } from "../Data/GameTypes.js";
-import { DownloadData } from "./Extraction Modules/DownloadData.js";
-import { extractGameData } from "./Extraction Modules/ExtractGameData.js";
+import { DownloadData } from "./Framework/DownloadData.js";
+import { extractGameData } from "./Framework/ExtractGameData.js";
 
 (function() {
     console.log("Tampermonkey: Injection attempting to attach to process")

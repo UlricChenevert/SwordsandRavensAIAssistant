@@ -1,9 +1,9 @@
 import { EntireGame, GameClient, GameLog, IngameGameState, OrdersRevealed } from "../../Data/GameTypes.js";
 import { LogIndexToGameRound, IGameDataExtractor, IGameLogDataExtractor } from "../../Contracts/ExtractionContracts.js";
-import { extractBidData } from "./BiddingExtraction.js";
-import { extractMilitaryData } from "./MilitaryExtraction.js";
-import { extractPlayerData } from "./PlayerExtraction.js";
-import { extractGameStateData } from "./RoundStateExtraction.js";
+import { extractBidData } from "../Modules/BiddingExtraction.js";
+import { extractMilitaryData } from "../Modules/MilitaryExtraction.js";
+import { extractPlayerData } from "../Modules/PlayerExtraction.js";
+import { extractGameStateData } from "../Modules/RoundStateExtraction.js";
 
 export const extractGameData = (GameClient : GameClient) => {
     const GameState = (<EntireGame>GameClient.entireGame).childGameState // Checked by injection script

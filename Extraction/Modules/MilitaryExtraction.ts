@@ -1,5 +1,5 @@
 import { HouseCardState } from "../../Data/GameConstants.js";
-import { Attack, Factions, GameLogData, House, SupportDeclared, SupportRefused } from "../../Data/GameTypes.js";
+import { Attack, CombatStats, EntireGameSnapshot, Factions, GameLogData, House, SupportDeclared, SupportRefused } from "../../Data/GameTypes.js";
 import { AttackLog, BattleStats, CombatLog, BattleLog, BattleParticipantLog, ExtractedMilitaryData, IGameLogDataExtractor } from "../../Contracts/ExtractionContracts.js";
 import { findCorrespondingRound } from "../../Utilities/GameRoundUtility.js";
 
@@ -39,7 +39,7 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
     while (!currentLogIsAttackLog && !RoundBeginningTerminateInfiniteLoopCondition) {
       logCorrelationIndex--;
       
-      const correlatedLog = logData[logCorrelationIndex]
+      const correlatedLog = logData[logCorrelationIndex] as GameLogData // we already check for "turn-begin"
 
       if (correlatedLog.type == "support-declared") {
         SupportDeclaredLogs.push(correlatedLog)
@@ -56,8 +56,11 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
     
     AttackLog = logData[logCorrelationIndex] as AttackLog // I am too tired to figure out why the index isn't on the money
 
-    const winnerStats = combatResult.stats.find((s: any) => s.isWinner);
-    const loserStats = combatResult.stats.find((s: any) => !s.isWinner);
+    const winnerStats = combatResult.stats.find((s: CombatStats) => s.isWinner);
+    const loserStats = combatResult.stats.find((s: CombatStats) => !s.isWinner);
+
+    if (winnerStats === undefined || loserStats === undefined) 
+      throw "winnerStats or loserStats is undefined???"
 
     const winnerSupport = SupportDeclaredLogs
       .filter((support)=>support.supported==winnerStats.house)
@@ -78,9 +81,14 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
     gameState.replayManager.selectLog(index)
 
     const snapshot = gameState.replayManager.selectedSnapshot
+    if (snapshot === null) 
+      throw "Replay manager is not available! Snapshot type is not supported!"
 
     const winnerHouseSnapshot = snapshot._houseMap.get(winnerStats.house)
     const loserHouseSnapshot = snapshot._houseMap.get(loserStats.house)
+
+    if (winnerHouseSnapshot === undefined || loserHouseSnapshot === undefined) 
+      throw "House snapshots are not available! Snapshot type is not supported!"
 
     gameState.replayManager.reset()
 
@@ -97,7 +105,7 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
     const battleData: BattleLog = {
       Attacker: AttackLog.attacker,
       AttackerRegion: AttackLog.attackingRegion,
-      Defender: AttackLog.attacked,
+      Defender: AttackLog.attacked?? "unknown",
       AttackedRegion: AttackLog.attackedRegion,
     };
     

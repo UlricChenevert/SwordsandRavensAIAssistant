@@ -1,56 +1,10 @@
 // Coin / Power token, land size,
 
-import { possibleFactions } from "../../Data/GameConstants.js";
-import { Factions, GameLocation, GameLogData, UnitState } from "../../Data/GameTypes.js";
+import { Factions, GameLogData, UnitState } from "../../Data/GameTypes.js";
 import { IGameLogDataExtractor } from "../../Contracts/ExtractionContracts.js"
 import { findCorrespondingRound } from "../../Utilities/GameRoundUtility.js";
-
-
-type CleanHouseSnapshot = {
-    FactionName : Factions
-    SupplyTier: number;
-    PowerTokens: number;
-    LandAreas : GameLocation[]
-    CastleCount: number;
-    LandAreaCount: number;
-}
-
-type ExtractedRoundData = {
-    HouseSnapshotData: Record<Factions, CleanHouseSnapshot>;
-    OrderTokenChoices: Map<GameLocation, string>;
-    UnitLocationSnapshotData: Map<GameLocation, UnitState[]>
-    Round : number
-};
-
-type ExtractedGameStateData = {
-    Rounds : ExtractedRoundData[]
-}
-
-const CleanHouseSnapshotFactory = (HouseName : Factions) : CleanHouseSnapshot => {
-    return {
-        FactionName : HouseName,
-        SupplyTier: -1,
-        PowerTokens: -1,
-        LandAreas : [],
-        CastleCount: -1,
-        LandAreaCount: -1
-    }
-}
-
-const ExtractedRoundDataFactory = () : ExtractedRoundData => {
-    const HouseSnapshots = {} as Record<Factions, CleanHouseSnapshot>
-    
-    possibleFactions.forEach(house=>{
-        HouseSnapshots[house] = CleanHouseSnapshotFactory(house)
-    })
-
-    return {
-        HouseSnapshotData: HouseSnapshots,
-        OrderTokenChoices: new Map<GameLocation, string>(),
-        UnitLocationSnapshotData: new Map<GameLocation, UnitState[]>(),
-        Round : -1
-    }
-}
+import { ExtractedRoundData, ExtractedGameStateData } from "../Contracts/Contracts.js";
+import { ExtractedRoundDataFactory } from "../Utilities/ClassFactories.js";
 
 export const extractGameStateData : IGameLogDataExtractor<ExtractedGameStateData> = (logData: GameLogData[], gameRoundMapping) => {
     const cleanData : ExtractedGameStateData = {Rounds: []}
