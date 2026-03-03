@@ -6,7 +6,7 @@
       {
         "label": "Bundle JavaScript",
         "type": "shell",
-        "command": "powershell -NoExit -File ${workspaceFolder}\\Tools\\watchJavaScript.ps1",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\watchJavaScript.ps1",
         "isBackground": true,
         "presentation": 
         {
@@ -17,7 +17,7 @@
       {
         "label": "Watch Typescript",
         "type": "shell",
-        "command": "powershell -NoExit -File ${workspaceFolder}\\Tools\\compileTypescript.ps1",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\compileTypescript.ps1",
         "isBackground": true,
         "presentation": 
         {
@@ -28,7 +28,7 @@
       {
         "label": "Serve Injection Script",
         "type": "shell",
-        "command": "powershell -NoExit -File ${workspaceFolder}\\Tools\\serveBundle.ps1",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\serveBundle.ps1",
         "isBackground": true,
         "presentation": 
         {
@@ -39,8 +39,19 @@
       {
         "label": "Run Analysis",
         "type": "shell",
-        "command": "powershell -NoExit -File ${workspaceFolder}\\Tools\\runAnalysis.ps1",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\runAnalysis.ps1",
         "isBackground": false,
+        "presentation": 
+        {
+          "reveal": "always",
+          "panel": "dedicated",
+        },
+      },
+      {
+        "label": "Watch Downloads for new data",
+        "type": "shell",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\grabDownloadedFiles.ps1",
+        "isBackground": true,
         "presentation": 
         {
           "reveal": "always",

@@ -1,0 +1,1 @@
+nodemon --watch "./0_Extraction/**/*.js" --exec "powershell -File ./.Tools/bundleJS.ps1"

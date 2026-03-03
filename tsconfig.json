@@ -32,8 +32,9 @@
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
+    "strict": true,
     "noEmitOnError": true,
-
+    
     // Recommended Options
     // "strict": true,
     // "jsx": "react-jsx",
@@ -42,5 +43,8 @@
     // "noUncheckedSideEffectImports": true,
     // "moduleDetection": "force",
     // "skipLibCheck": true,
-  }
+  },
+  "exclude":[
+    ".Legacy/**/*"
+  ],
 }

@@ -9,14 +9,18 @@
         "package-lock.json": true,
         "package.json": true,
         "tsconfig.json": true,
+        ".claude": true,
+        ".venv": true,
+        ".Legacy":true,
+
         "**/__pycache__":true,
         "**/__init__.py":true,
         // "**/*.d.ts": { "when": "$(basename).ts" },
     },
     "explorer.fileNesting.enabled": true,
-    "explorer.fileNesting.patterns": {
-        "*.ts": "${capture}.d.ts, ${capture}.js, ${capture}.js.map"
-    },  
+    // "explorer.fileNesting.patterns": {
+    //     "*.ts": "${capture}.d.ts, ${capture}.js, ${capture}.js.map"
+    // },  
     
     "liveServer.settings.port": 5501
 }
