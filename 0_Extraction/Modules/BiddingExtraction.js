@@ -13,6 +13,7 @@ export const extractBidData = (logData, gameRoundMapping) => {
                     Track: tracksMapping[log.trackerI],
                     Amount: bidAmountInstance[0],
                     Faction: factionBidInstance,
+                    currentGameStateReferenceIndex: index,
                     Round: findCorrespondingRound(index, gameRoundMapping).round
                 });
             });

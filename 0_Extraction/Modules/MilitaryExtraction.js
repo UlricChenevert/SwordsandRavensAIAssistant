@@ -1,42 +1,13 @@
-import { ReplayConstants, HouseCardState } from "../Contracts/GameConstants.js";
 import { findCorrespondingRound } from "./GameRoundExtraction.js";
-import _ from "lodash";
 // ===== DATA EXTRACTION FUNCTIONS =====
 export const extractMilitaryData = (logData, gameRoundMapping, gameState) => {
     const combatLogs = [];
-    gameState.replayManager.selectLog(1);
-    const entireGameSnapshotClass = Object.getPrototypeOf(gameState.replayManager.selectedSnapshot).constructor;
-    const SnapshotMigratorClass = Object.getPrototypeOf(gameState.replayManager.migrator).constructor;
-    const migrator = new SnapshotMigratorClass(gameState);
-    const setupLog = logData.find(l => l.type === "orders-revealed");
-    if (!setupLog)
-        throw "No setup log found to initialize snapshot";
-    let currentSnapshot = new entireGameSnapshotClass({
-        worldSnapshot: setupLog.worldState,
-        gameSnapshot: setupLog.gameSnapshot,
-    }, gameState);
     // Process CombatResult logs
     logData.forEach((log, index) => {
-        // Kinda Copy pasted from replay manager v
-        if (ReplayConstants.combatTerminationLogTypes.has(log.type)) {
-            migrator.resetCombatLogData();
-        }
-        if (isModifyingGameLog(log)) {
-            currentSnapshot = migrator.applyLogEvent(currentSnapshot, _.cloneDeep(log), index);
-        }
-        else if (isReplacementGameLog(log)) {
-            currentSnapshot = migrator.handleVassalReplacement(currentSnapshot, _.cloneDeep(log));
-        }
-        else {
-            console.warn("Unknown log type in military extraction");
-        }
-        // ^
         if (log.type !== "combat-result")
             return;
         const combatResult = log;
         const round = findCorrespondingRound(index, gameRoundMapping);
-        if (currentSnapshot === null || currentSnapshot === undefined)
-            throw "How the fuck is currentSnapshot null??????";
         let AttackLog;
         let SupportDeclaredLogs = [];
         let SupportRefusedLogs = [];
@@ -83,19 +54,6 @@ export const extractMilitaryData = (logData, gameRoundMapping, gameState) => {
         const loserRefusedSupport = SupportRefusedLogs
             .filter((support) => support.house == loserStats.house)
             .length > 0;
-        const winnerHouseSnapshot = currentSnapshot.getHouse(winnerStats.house);
-        const loserHouseSnapshot = currentSnapshot.getHouse(loserStats.house);
-        if (winnerHouseSnapshot === undefined || loserHouseSnapshot === undefined)
-            throw "House snapshots are not available! Snapshot type is not supported!";
-        // gameState.replayManager.reset()
-        const winnerHouseCards = winnerHouseSnapshot
-            .houseCards
-            .filter(x => x.state == HouseCardState.AVAILABLE)
-            .map(x => x.id);
-        const loserHouseCards = loserHouseSnapshot
-            .houseCards
-            .filter(x => x.state == HouseCardState.AVAILABLE)
-            .map(x => x.id);
         const battleData = {
             Attacker: AttackLog.attacker,
             AttackerRegion: AttackLog.attackingRegion,
@@ -118,7 +76,7 @@ export const extractMilitaryData = (logData, gameRoundMapping, gameState) => {
             ValyrianSteelBlade: winnerStats.valyrianSteelBlade,
             TidesOfBattleCard: winnerStats.tidesOfBattleCard,
             Total: winnerStats.total,
-            HouseCardSelection: winnerHouseCards,
+            currentGameStateReferenceIndex: index,
             FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x) => x == AttackLog.attacker)
         };
         const loserData = {
@@ -137,7 +95,7 @@ export const extractMilitaryData = (logData, gameRoundMapping, gameState) => {
             ValyrianSteelBlade: loserStats.valyrianSteelBlade,
             TidesOfBattleCard: loserStats.tidesOfBattleCard,
             Total: loserStats.total,
-            HouseCardSelection: loserHouseCards,
+            currentGameStateReferenceIndex: index,
             FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x) => x == AttackLog.attacked)
         };
         combatLogs.push({
@@ -149,9 +107,3 @@ export const extractMilitaryData = (logData, gameRoundMapping, gameState) => {
     });
     return { combatLogs };
 };
-function isModifyingGameLog(log) {
-    return ReplayConstants.modifyingGameLogTypes.has(log.type);
-}
-function isReplacementGameLog(log) {
-    return ReplayConstants.replacementLogTypes.has(log.type);
-}

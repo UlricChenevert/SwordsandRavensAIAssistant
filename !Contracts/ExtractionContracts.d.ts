@@ -104,7 +104,8 @@ type BattleParticipantLog = {
   
   HouseCard: HouseCard | null;
   HouseCardStrength: number;
-  HouseCardSelection : HouseCard[]
+
+  currentGameStateReferenceIndex : number; // Used to figure out the current state of the game
 
   FiefdomTrackPosition : number
   
@@ -123,7 +124,8 @@ interface CleanBiddingData {
   "Track" : BidTracks, 
   "Amount": number, 
   "Faction": Factions,
-  Round : number
+  Round : number,
+  currentGameStateReferenceIndex: number
 }
 
 type ExtractedBidData = {

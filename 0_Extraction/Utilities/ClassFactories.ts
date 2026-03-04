@@ -22,8 +22,9 @@ export const ExtractedRoundDataFactory = () : ExtractedRoundData => {
 
     return {
         HouseSnapshotData: HouseSnapshots,
-        OrderTokenChoices: new Map<GameLocation, string>(),
-        UnitLocationSnapshotData: new Map<GameLocation, UnitState[]>(),
-        Round : -1
+        OrderTokenChoices: {},
+        UnitLocationSnapshotData: {},
+        Round : -1,
+        LogIndex : -1
     }
 }

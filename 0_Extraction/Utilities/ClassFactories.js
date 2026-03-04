@@ -16,8 +16,9 @@ export const ExtractedRoundDataFactory = () => {
     });
     return {
         HouseSnapshotData: HouseSnapshots,
-        OrderTokenChoices: new Map(),
-        UnitLocationSnapshotData: new Map(),
-        Round: -1
+        OrderTokenChoices: {},
+        UnitLocationSnapshotData: {},
+        Round: -1,
+        LogIndex: -1
     };
 };

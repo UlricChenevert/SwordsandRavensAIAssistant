@@ -18,6 +18,7 @@ export const extractBidData: IGameLogDataExtractor<ExtractedBidData> = (logData:
                     Track: tracksMapping[log.trackerI] as BidTracks,
                     Amount: bidAmountInstance[0],
                     Faction: factionBidInstance as Factions,
+                    currentGameStateReferenceIndex: index,
                     Round: findCorrespondingRound(index, gameRoundMapping).round
                 });
             });

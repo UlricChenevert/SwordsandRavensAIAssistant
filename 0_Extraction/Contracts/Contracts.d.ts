@@ -11,9 +11,10 @@ type CleanHouseSnapshot = {
 
 type ExtractedRoundData = {
     HouseSnapshotData: Record<Factions, CleanHouseSnapshot>;
-    OrderTokenChoices: Map<GameLocation, string>;
-    UnitLocationSnapshotData: Map<GameLocation, UnitState[]>
+    OrderTokenChoices: Partial<Record<GameLocation, string>>;
+    UnitLocationSnapshotData: Partial<Record<GameLocation, UnitState[]>>
     Round : number
+    LogIndex : number
 };
 
 type ExtractedGameStateData = {

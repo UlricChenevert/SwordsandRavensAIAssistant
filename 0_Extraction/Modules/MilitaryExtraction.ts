@@ -1,53 +1,19 @@
 import { IGameLogDataExtractor, ExtractedMilitaryData, CombatLog, BattleLog, BattleParticipantLog } from "../../!Contracts/ExtractionContracts.js";
-import { ReplayConstants, HouseCardState } from "../Contracts/GameConstants.js";
-import { GameLogData, EntireGameSnapshot, SnapshotMigrator, OrdersRevealed, Attack, SupportDeclared, SupportRefused, CombatStats } from "../Contracts/GameTypes.js";
+import { GameLogData, Attack, SupportDeclared, SupportRefused, CombatStats } from "../Contracts/GameTypes.js";
 import { findCorrespondingRound } from "./GameRoundExtraction.js";
-import _ from "lodash"
 
 // ===== DATA EXTRACTION FUNCTIONS =====
 
 export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> = (logData: GameLogData[], gameRoundMapping, gameState) => {
   const combatLogs: CombatLog[] = [];
 
-  gameState.replayManager.selectLog(1);
-  const entireGameSnapshotClass = Object.getPrototypeOf(gameState.replayManager.selectedSnapshot as EntireGameSnapshot).constructor
-
-  const SnapshotMigratorClass = Object.getPrototypeOf(gameState.replayManager.migrator).constructor;
-  const migrator : SnapshotMigrator = new SnapshotMigratorClass(gameState);
-
-  const setupLog = logData.find(l => l.type === "orders-revealed") as OrdersRevealed;
-  if (!setupLog) throw "No setup log found to initialize snapshot";
-
-  let currentSnapshot : EntireGameSnapshot = new entireGameSnapshotClass({
-    worldSnapshot: setupLog.worldState,
-    gameSnapshot: setupLog.gameSnapshot,
-  }, gameState);
-
   // Process CombatResult logs
   logData.forEach((log, index) => {
-
-    // Kinda Copy pasted from replay manager v
-
-    if (ReplayConstants.combatTerminationLogTypes.has(log.type)) {
-      migrator.resetCombatLogData();
-    }
-    if (isModifyingGameLog(log)) {
-      currentSnapshot = migrator.applyLogEvent(currentSnapshot, _.cloneDeep(log), index);
-    } else if (isReplacementGameLog(log)) {
-      currentSnapshot = migrator.handleVassalReplacement(currentSnapshot, _.cloneDeep(log));
-    } else {
-      console.warn("Unknown log type in military extraction")
-    }
-
-    // ^
 
     if (log.type !== "combat-result") return
 
     const combatResult = log
     const round = findCorrespondingRound(index, gameRoundMapping);
-    
-    if (currentSnapshot === null || currentSnapshot === undefined) 
-      throw "How the fuck is currentSnapshot null??????"
     
     let AttackLog: Attack;
     let SupportDeclaredLogs: SupportDeclared[] = [];
@@ -113,24 +79,6 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
       .filter((support)=>support.house==loserStats.house)
       .length > 0
 
-    const winnerHouseSnapshot = currentSnapshot.getHouse(winnerStats.house)
-    const loserHouseSnapshot = currentSnapshot.getHouse(loserStats.house)
-
-    if (winnerHouseSnapshot === undefined || loserHouseSnapshot === undefined) 
-      throw "House snapshots are not available! Snapshot type is not supported!"
-
-    // gameState.replayManager.reset()
-
-    const winnerHouseCards = winnerHouseSnapshot
-      .houseCards
-        .filter(x=>x.state==HouseCardState.AVAILABLE)
-        .map(x=>x.id)
-
-    const loserHouseCards = loserHouseSnapshot
-      .houseCards
-        .filter(x=>x.state==HouseCardState.AVAILABLE)
-        .map(x=>x.id)
-    
     const battleData: BattleLog = {
       Attacker: AttackLog.attacker,
       AttackerRegion: AttackLog.attackingRegion,
@@ -154,7 +102,7 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
       ValyrianSteelBlade: winnerStats.valyrianSteelBlade,
       TidesOfBattleCard: winnerStats.tidesOfBattleCard,
       Total: winnerStats.total,
-      HouseCardSelection: winnerHouseCards,
+      currentGameStateReferenceIndex: index,
       FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x)=>x==AttackLog.attacker)
     };
     
@@ -174,7 +122,7 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
       ValyrianSteelBlade: loserStats.valyrianSteelBlade,
       TidesOfBattleCard: loserStats.tidesOfBattleCard,
       Total: loserStats.total,
-      HouseCardSelection: loserHouseCards,
+      currentGameStateReferenceIndex: index,
       FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x)=>x==AttackLog.attacked)
     };
     
@@ -191,10 +139,3 @@ export const extractMilitaryData : IGameLogDataExtractor<ExtractedMilitaryData> 
 };
 
 
-function isModifyingGameLog(log: GameLogData): boolean {
-  return ReplayConstants.modifyingGameLogTypes.has(log.type);
-}
-
-function isReplacementGameLog(log: GameLogData): boolean {
-  return ReplayConstants.replacementLogTypes.has(log.type);
-}

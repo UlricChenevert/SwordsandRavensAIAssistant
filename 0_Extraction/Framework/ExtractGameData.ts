@@ -3,20 +3,25 @@ import { LogIndexToGameRound, IGameDataExtractor, IGameLogDataExtractor } from "
 import { extractBidData } from "../Modules/BiddingExtraction.js";
 import { extractMilitaryData } from "../Modules/MilitaryExtraction.js";
 import { extractPlayerData } from "../Modules/PlayerExtraction.js";
-import { extractGameStateData } from "../Modules/RoundStateExtraction.js";
+import { extractTurnStateData } from "../Modules/TurnStateExtraction.js";
+import { grabSnapshotConstructors } from "../Utilities/GrabClassConstructors.js";
 
 export const extractGameData = (GameClient : GameClient) => {
     const GameState = (<EntireGame>GameClient.entireGame).childGameState // Checked by injection script
     const GameLogs = GameState.gameLogManager.logs
     const TurnMapping = extractGameTurnData(GameLogs)
+    
+    grabSnapshotConstructors(GameState)
 
     const extractedData = {}
 
-    Object.assign(extractedData, extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractGameStateData], TurnMapping, GameState))
-    Object.assign(extractedData, extractMiscData(GameClient, [extractPlayerData]))
+    const extractedLogData = extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractTurnStateData], TurnMapping, GameState)
+    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData])
+
+    Object.assign(extractedData, extractedLogData)
+    Object.assign(extractedData, extractedMiscData)
 
     return extractedData
-
 }
 
 export const extractLogData = (logs : GameLog[], Extractors : IGameLogDataExtractor<object>[], gameRoundToLogIndex : LogIndexToGameRound[], gameState : IngameGameState) => {

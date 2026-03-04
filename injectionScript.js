@@ -744,10 +744,10 @@
           })();
           var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout, ctxNow = Date && Date.now !== root.Date.now && Date.now, ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
           var nativeCeil = Math2.ceil, nativeFloor = Math2.floor, nativeGetSymbols = Object2.getOwnPropertySymbols, nativeIsBuffer = Buffer2 ? Buffer2.isBuffer : undefined2, nativeIsFinite = context.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object2.keys, Object2), nativeMax = Math2.max, nativeMin = Math2.min, nativeNow = Date.now, nativeParseInt = context.parseInt, nativeRandom = Math2.random, nativeReverse = arrayProto.reverse;
-          var DataView = getNative(context, "DataView"), Map2 = getNative(context, "Map"), Promise2 = getNative(context, "Promise"), Set2 = getNative(context, "Set"), WeakMap = getNative(context, "WeakMap"), nativeCreate = getNative(Object2, "create");
+          var DataView = getNative(context, "DataView"), Map = getNative(context, "Map"), Promise2 = getNative(context, "Promise"), Set2 = getNative(context, "Set"), WeakMap = getNative(context, "WeakMap"), nativeCreate = getNative(Object2, "create");
           var metaMap = WeakMap && new WeakMap();
           var realNames = {};
-          var dataViewCtorString = toSource(DataView), mapCtorString = toSource(Map2), promiseCtorString = toSource(Promise2), setCtorString = toSource(Set2), weakMapCtorString = toSource(WeakMap);
+          var dataViewCtorString = toSource(DataView), mapCtorString = toSource(Map), promiseCtorString = toSource(Promise2), setCtorString = toSource(Set2), weakMapCtorString = toSource(WeakMap);
           var symbolProto = Symbol2 ? Symbol2.prototype : undefined2, symbolValueOf = symbolProto ? symbolProto.valueOf : undefined2, symbolToString = symbolProto ? symbolProto.toString : undefined2;
           function lodash(value) {
             if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
@@ -992,7 +992,7 @@
             this.size = 0;
             this.__data__ = {
               "hash": new Hash(),
-              "map": new (Map2 || ListCache)(),
+              "map": new (Map || ListCache)(),
               "string": new Hash()
             };
           }
@@ -1057,7 +1057,7 @@
             var data = this.__data__;
             if (data instanceof ListCache) {
               var pairs = data.__data__;
-              if (!Map2 || pairs.length < LARGE_ARRAY_SIZE - 1) {
+              if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
                 pairs.push([key, value]);
                 this.size = ++data.size;
                 return this;
@@ -2821,7 +2821,7 @@
             return result2;
           };
           var getTag = baseGetTag;
-          if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map2 && getTag(new Map2()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set2 && getTag(new Set2()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
+          if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise2 && getTag(Promise2.resolve()) != promiseTag || Set2 && getTag(new Set2()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
             getTag = function(value) {
               var result2 = baseGetTag(value), Ctor = result2 == objectTag ? value.constructor : undefined2, ctorString = Ctor ? toSource(Ctor) : "";
               if (ctorString) {
@@ -5741,6 +5741,7 @@
             Track: tracksMapping[log.trackerI],
             Amount: bidAmountInstance[0],
             Faction: factionBidInstance,
+            currentGameStateReferenceIndex: index,
             Round: findCorrespondingRound(index, gameRoundMapping).round
           });
         });
@@ -5764,37 +5765,13 @@
   };
 
   // 0_Extraction/Modules/MilitaryExtraction.js
-  var import_lodash = __toESM(require_lodash(), 1);
   var extractMilitaryData = (logData, gameRoundMapping, gameState) => {
     const combatLogs = [];
-    gameState.replayManager.selectLog(1);
-    const entireGameSnapshotClass = Object.getPrototypeOf(gameState.replayManager.selectedSnapshot).constructor;
-    const SnapshotMigratorClass = Object.getPrototypeOf(gameState.replayManager.migrator).constructor;
-    const migrator = new SnapshotMigratorClass(gameState);
-    const setupLog = logData.find((l) => l.type === "orders-revealed");
-    if (!setupLog)
-      throw "No setup log found to initialize snapshot";
-    let currentSnapshot = new entireGameSnapshotClass({
-      worldSnapshot: setupLog.worldState,
-      gameSnapshot: setupLog.gameSnapshot
-    }, gameState);
     logData.forEach((log, index) => {
-      if (ReplayConstants.combatTerminationLogTypes.has(log.type)) {
-        migrator.resetCombatLogData();
-      }
-      if (isModifyingGameLog(log)) {
-        currentSnapshot = migrator.applyLogEvent(currentSnapshot, import_lodash.default.cloneDeep(log), index);
-      } else if (isReplacementGameLog(log)) {
-        currentSnapshot = migrator.handleVassalReplacement(currentSnapshot, import_lodash.default.cloneDeep(log));
-      } else {
-        console.warn("Unknown log type in military extraction");
-      }
       if (log.type !== "combat-result")
         return;
       const combatResult = log;
       const round = findCorrespondingRound(index, gameRoundMapping);
-      if (currentSnapshot === null || currentSnapshot === void 0)
-        throw "How the fuck is currentSnapshot null??????";
       let AttackLog;
       let SupportDeclaredLogs = [];
       let SupportRefusedLogs = [];
@@ -5825,12 +5802,6 @@
       const loserSupport = SupportDeclaredLogs.filter((support) => support.supported == loserStats.house).map((support) => support.supporter);
       const winnerRefusedSupport = SupportRefusedLogs.filter((support) => support.house == winnerStats.house).length > 0;
       const loserRefusedSupport = SupportRefusedLogs.filter((support) => support.house == loserStats.house).length > 0;
-      const winnerHouseSnapshot = currentSnapshot.getHouse(winnerStats.house);
-      const loserHouseSnapshot = currentSnapshot.getHouse(loserStats.house);
-      if (winnerHouseSnapshot === void 0 || loserHouseSnapshot === void 0)
-        throw "House snapshots are not available! Snapshot type is not supported!";
-      const winnerHouseCards = winnerHouseSnapshot.houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
-      const loserHouseCards = loserHouseSnapshot.houseCards.filter((x) => x.state == HouseCardState.AVAILABLE).map((x) => x.id);
       const battleData = {
         Attacker: AttackLog.attacker,
         AttackerRegion: AttackLog.attackingRegion,
@@ -5854,7 +5825,7 @@
         ValyrianSteelBlade: winnerStats.valyrianSteelBlade,
         TidesOfBattleCard: winnerStats.tidesOfBattleCard,
         Total: winnerStats.total,
-        HouseCardSelection: winnerHouseCards,
+        currentGameStateReferenceIndex: index,
         FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x) => x == AttackLog.attacker)
       };
       const loserData = {
@@ -5873,7 +5844,7 @@
         ValyrianSteelBlade: loserStats.valyrianSteelBlade,
         TidesOfBattleCard: loserStats.tidesOfBattleCard,
         Total: loserStats.total,
-        HouseCardSelection: loserHouseCards,
+        currentGameStateReferenceIndex: index,
         FiefdomTrackPosition: round.fiefdomsTrack.findIndex((x) => x == AttackLog.attacked)
       };
       combatLogs.push({
@@ -5885,12 +5856,6 @@
     });
     return { combatLogs };
   };
-  function isModifyingGameLog(log) {
-    return ReplayConstants.modifyingGameLogTypes.has(log.type);
-  }
-  function isReplacementGameLog(log) {
-    return ReplayConstants.replacementLogTypes.has(log.type);
-  }
 
   // 0_Extraction/Modules/PlayerExtraction.js
   var extractPlayerData = (client) => {
@@ -5926,22 +5891,82 @@
     });
     return {
       HouseSnapshotData: HouseSnapshots,
-      OrderTokenChoices: /* @__PURE__ */ new Map(),
-      UnitLocationSnapshotData: /* @__PURE__ */ new Map(),
-      Round: -1
+      OrderTokenChoices: {},
+      UnitLocationSnapshotData: {},
+      Round: -1,
+      LogIndex: -1
     };
   };
 
-  // 0_Extraction/Modules/RoundStateExtraction.js
-  var extractGameStateData = (logData, gameRoundMapping) => {
+  // 0_Extraction/Utilities/GrabClassConstructors.js
+  function grabSnapshotConstructors(gameState) {
+    gameState.replayManager.selectLog(1);
+    const entireGameSnapshotClass = Object.getPrototypeOf(gameState.replayManager.selectedSnapshot).constructor;
+    gameState.replayManager.reset();
+    const SnapshotMigratorClass = Object.getPrototypeOf(gameState.replayManager.migrator).constructor;
+    EntireGameSnapshotConstructor = entireGameSnapshotClass;
+    SnapshotMigratorConstructor = SnapshotMigratorClass;
+    return { EntireGameSnapshotConstructor: entireGameSnapshotClass, SnapshotMigratorConstructor: SnapshotMigratorClass };
+  }
+  var EntireGameSnapshotConstructor;
+  var SnapshotMigratorConstructor;
+
+  // 0_Extraction/Utilities/ReplayManagerReimplementation.js
+  var import_lodash = __toESM(require_lodash(), 1);
+  function changeSnapshotWithNewLog(migrator, currentSnapshot, log, index, gameState) {
+    if (ReplayConstants.combatTerminationLogTypes.has(log.type)) {
+      migrator.resetCombatLogData();
+    }
+    const newSnapshot = currentSnapshot.getCopy();
+    if (log.type == "orders-revealed")
+      return new EntireGameSnapshotConstructor({
+        worldSnapshot: log.worldState,
+        gameSnapshot: log.gameSnapshot
+      }, gameState);
+    if (isModifyingGameLog(log))
+      return migrator.applyLogEvent(newSnapshot, import_lodash.default.cloneDeep(log), index);
+    if (isReplacementGameLog(log))
+      return migrator.handleVassalReplacement(newSnapshot, import_lodash.default.cloneDeep(log));
+    return currentSnapshot;
+  }
+  function isModifyingGameLog(log) {
+    return ReplayConstants.modifyingGameLogTypes.has(log.type);
+  }
+  function isReplacementGameLog(log) {
+    return ReplayConstants.replacementLogTypes.has(log.type);
+  }
+
+  // 0_Extraction/Modules/TurnStateExtraction.js
+  var extractTurnStateData = (logData, gameRoundMapping, gameState) => {
     const cleanData = { Rounds: [] };
+    let migrator = new SnapshotMigratorConstructor(gameState);
+    let startingIndex = 0;
+    const setupLog = logData.find((l, index) => {
+      startingIndex = index;
+      return l.type === "orders-revealed";
+    });
+    if (!setupLog)
+      throw "No setup log found to initialize snapshot";
+    let currentSnapshot = new EntireGameSnapshotConstructor({
+      worldSnapshot: setupLog.worldState,
+      gameSnapshot: setupLog.gameSnapshot
+    }, gameState);
     logData.forEach((log, index) => {
-      if (log.type != "orders-revealed")
+      if (index < startingIndex)
         return;
+      if (log.type === "orders-revealed") {
+        migrator = new SnapshotMigratorConstructor(gameState);
+      }
+      currentSnapshot = changeSnapshotWithNewLog(migrator, currentSnapshot, log, index, gameState);
+      currentSnapshot.calculateControllersPerRegion();
+      if (currentSnapshot.gameSnapshot) {
+        currentSnapshot.gameSnapshot.housesOnVictoryTrack = currentSnapshot.getVictoryTrack();
+      }
       const extractedRoundData = ExtractedRoundDataFactory();
       extractedRoundData.Round = findCorrespondingRound(index, gameRoundMapping).round;
-      if (log.gameSnapshot) {
-        log.gameSnapshot.housesOnVictoryTrack.forEach((house) => {
+      extractedRoundData.LogIndex = index;
+      if (currentSnapshot.gameSnapshot) {
+        currentSnapshot.gameSnapshot.housesOnVictoryTrack.forEach((house) => {
           const extractedHouseRef = extractedRoundData.HouseSnapshotData[house.id];
           extractedHouseRef.CastleCount = house.victoryPoints;
           extractedHouseRef.LandAreaCount = house.landAreaCount;
@@ -5949,19 +5974,16 @@
           extractedHouseRef.SupplyTier = house.supply;
         });
       }
-      log.worldState.forEach((region) => {
+      currentSnapshot.worldSnapshot.forEach((region) => {
         if (region.order)
-          extractedRoundData.OrderTokenChoices.set(region.id, region.order.type);
-        let house;
-        if (region.units?.length !== void 0 && region.units?.length > 0) {
-          house = region.units[0].house;
-          extractedRoundData.UnitLocationSnapshotData.set(region.id, region.units);
-        } else if (region.controlPowerToken) {
-          house = region.controlPowerToken;
-        } else {
+          extractedRoundData.OrderTokenChoices[region.id] = region.order.type;
+        let controller = currentSnapshot.getController(region.id);
+        if (!controller)
           return;
-        }
-        extractedRoundData.HouseSnapshotData[house].LandAreas.push(region.id);
+        extractedRoundData.HouseSnapshotData[controller.id].LandAreas.push(region.id);
+        if (!region.units)
+          return;
+        extractedRoundData.UnitLocationSnapshotData[region.id] = region.units;
       });
       cleanData.Rounds.push(extractedRoundData);
     });
@@ -5973,9 +5995,12 @@
     const GameState = GameClient.entireGame.childGameState;
     const GameLogs = GameState.gameLogManager.logs;
     const TurnMapping = extractGameTurnData(GameLogs);
+    grabSnapshotConstructors(GameState);
     const extractedData = {};
-    Object.assign(extractedData, extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractGameStateData], TurnMapping, GameState));
-    Object.assign(extractedData, extractMiscData(GameClient, [extractPlayerData]));
+    const extractedLogData = extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractTurnStateData], TurnMapping, GameState);
+    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData]);
+    Object.assign(extractedData, extractedLogData);
+    Object.assign(extractedData, extractedMiscData);
     return extractedData;
   };
   var extractLogData = (logs, Extractors, gameRoundToLogIndex, gameState) => {
