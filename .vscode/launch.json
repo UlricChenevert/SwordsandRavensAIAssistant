@@ -30,7 +30,14 @@
       "name": "Debug Python Report",
       "type": "debugpy",
       "request": "launch",
-      "program": "2_Reporting/GenerateReport.py",
+      "program": "3_Reporting/GenerateReport.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Python AI",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "2_AI/Server.py",
       "console": "integratedTerminal"
     }
   ]
