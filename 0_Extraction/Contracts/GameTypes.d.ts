@@ -1860,12 +1860,124 @@ interface World {
   getSnapshot(): any;
 }
 
+declare const enum HouseCardDecks {
+  None = 0,
+  BaseAndModA = 1 << 0,
+  DwdFfcModB = 1 << 1,
+  StormOfSwords = 1 << 2,
+  All = ~(~0 << 3),
+}
+
+interface SerializedGameSettings {
+  setupId: string;
+  playerCount: number;
+  pbem: boolean;
+  onlyLive?: boolean;
+  startWhenFull?: boolean;
+  private?: boolean;
+  randomHouses?: boolean;
+  randomChosenHouses?: boolean;
+  adwdHouseCards?: boolean;
+  asosHouseCards?: boolean;
+  cokWesterosPhase?: boolean;
+  vassals?: boolean;
+  seaOrderTokens?: boolean;
+  allowGiftingPowerTokens?: boolean;
+  ironBank?: boolean;
+  tidesOfBattle?: boolean;
+  draftHouseCards?: boolean;
+  draftTracks?: boolean;
+  thematicDraft?: boolean;
+  limitedDraft?: boolean;
+  randomDraft?: boolean;
+  blindDraft?: boolean;
+  perpetuumRandom?: boolean;
+  draftMap?: boolean;
+  selectedDraftDecks?: number;
+  endless?: boolean;
+  useVassalPositions?: boolean;
+  precedingMustering?: boolean;
+  mixedWesterosDeck1?: boolean;
+  removeTob3?: boolean;
+  removeTobSkulls?: boolean;
+  limitTob2?: boolean;
+  faceless?: boolean;
+  randomStartPositions?: boolean;
+  addPortToTheEyrie?: boolean;
+  victoryPointsCountNeededToWin?: number;
+  loyaltyTokenCountNeededToWin?: number;
+  randomVassalAssignment?: boolean;
+  customBalancing?: boolean;
+  houseCardsEvolution?: boolean;
+  houseCardsEvolutionRound?: number;
+  initialLiveClock?: number;
+  noPrivateChats?: boolean;
+  tournamentMode?: boolean;
+  fixedClock?: boolean;
+  holdVictoryPointsUntilEndOfRound?: boolean;
+  fogOfWar?: boolean;
+  dragonWar?: boolean;
+  dragonRevenge?: boolean;
+}
+
+interface GameSettings {
+  setupId: string;
+  playerCount: number;
+  pbem: boolean;
+  onlyLive: boolean;
+  startWhenFull: boolean;
+  private: boolean;
+  randomHouses: boolean;
+  randomChosenHouses: boolean;
+  adwdHouseCards: boolean;
+  asosHouseCards: boolean;
+  cokWesterosPhase: boolean;
+  vassals: boolean;
+  seaOrderTokens: boolean;
+  allowGiftingPowerTokens: boolean;
+  ironBank: boolean;
+  tidesOfBattle: boolean;
+  draftHouseCards: boolean;
+  draftTracks: boolean;
+  thematicDraft: boolean;
+  limitedDraft: boolean;
+  randomDraft: boolean;
+  perpetuumRandom: boolean;
+  blindDraft: boolean;
+  draftMap: boolean;
+  selectedDraftDecks: number;
+  endless: boolean;
+  useVassalPositions: boolean;
+  precedingMustering: boolean;
+  mixedWesterosDeck1: boolean;
+  removeTob3: boolean;
+  removeTobSkulls: boolean;
+  limitTob2: boolean;
+  faceless: boolean;
+  randomStartPositions: boolean;
+  addPortToTheEyrie: boolean;
+  victoryPointsCountNeededToWin: number;
+  loyaltyTokenCountNeededToWin: number;
+  randomVassalAssignment: boolean;
+  customBalancing: boolean;
+  houseCardsEvolution: boolean;
+  houseCardsEvolutionRound: number;
+  initialLiveClock: number;
+  noPrivateChats: boolean;
+  tournamentMode: boolean;
+  fixedClock: boolean;
+  holdVictoryPointsUntilEndOfRound: boolean;
+  fogOfWar: boolean;
+  dragonWar: boolean;
+  dragonRevenge: boolean;
+}
+
 interface EntireGame {
   id: string;
   name: string;
   childGameState: IngameGameState; // | any
   users: Map<string, any>;
-  gameSettings: any;
+  gameSettings: GameSettings;
   publicChatRoomId: string;
   privateChatRoomIds: Map<any, Map<any, string>>;
   leafStateId: string;

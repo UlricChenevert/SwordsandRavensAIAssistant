@@ -3,6 +3,7 @@ import { EntireGame, GameClient, GameLog, IngameGameState } from "../Contracts/G
 import { extractBidData } from "../Modules/BiddingExtraction.js";
 import { extractMilitaryData } from "../Modules/MilitaryExtraction.js";
 import { extractPlayerData } from "../Modules/PlayerExtraction.js";
+import { extractSettingsData } from "../Modules/SettingsExtraction.js";
 import { extractTurnStateData } from "../Modules/TurnStateExtraction.js";
 import { grabSnapshotConstructors } from "../Utilities/GrabClassConstructors.js";
 
@@ -16,7 +17,7 @@ export const extractGameData = (GameClient : GameClient) => {
     const extractedData = {}
 
     const extractedLogData = extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractTurnStateData], GameState)
-    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData])
+    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData, extractSettingsData])
 
     Object.assign(extractedData, extractedLogData)
     Object.assign(extractedData, extractedMiscData)

@@ -29,13 +29,17 @@ async def read_files_async(file_path: str) -> str:
         return await file.read()
 
 
-async def loadScrappedData(amount: int = 2) -> list[ScrapedGameEntry]:
+async def loadScrappedData(amount: int = 2, batch_size: int = 5) -> list[ScrapedGameEntry]:
     filePaths = list(ScrappedDataDirectory.iterdir())
 
-    if (amount != -1): filePaths = filePaths[:amount]
+    if (amount != -1):
+        filePaths = filePaths[:amount]
 
-    rawStrings = await asyncio.gather(*[read_files_async(str(fp)) for fp in filePaths])
-    parsedData = [convertJSONToScrappedData(s) for s in rawStrings]
+    parsedData: list[ScrapedData] = []
+    for i in range(0, len(filePaths), batch_size):
+        batch = filePaths[i:i + batch_size]
+        rawStrings = await asyncio.gather(*[read_files_async(str(fp)) for fp in batch])
+        parsedData.extend(convertJSONToScrappedData(s) for s in rawStrings)
 
     return RemoveRedundantData(parsedData)
 

@@ -1,10 +1,10 @@
 from collections import defaultdict
-from typing import Dict, List, Protocol
+from typing import Any, Dict, List, Protocol, cast
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from Contracts.ExtractionContracts import ScrapedGameEntry
+from Contracts.ExtractionContracts import ExtractedRoundData, ScrapedGameEntry
 from Configuration.Colors import ALL_FACTIONS, FACTION_COLORS, TRACKS
 
 
@@ -31,8 +31,10 @@ def display_all(games: List[ScrapedGameEntry]) -> None:
         _plot_bid_by_position(axes[0, col], games, track)
     axes[0, 3].set_visible(False)
 
-    for ax in axes[1]:
-        ax.set_visible(False)
+    _plot_faction_stat(axes[1, 0], games, "SupplyTier",         "Supply Tier by Round")
+    _plot_faction_stat(axes[1, 1], games, "PowerTokens",        "Power Tokens by Round")
+    _plot_faction_stat(axes[1, 2], games, "RoundEndCastleCount","Castles by Round")
+    _plot_faction_stat(axes[1, 3], games, "LandAreaCount",      "Land Areas by Round")
 
     plt.tight_layout()
     plt.show(block=True)
@@ -68,3 +70,38 @@ def _plot_bid_by_position(ax: _PlotAxes, games: List[ScrapedGameEntry], track: s
     ax.set_xticks(x)
     ax.set_xticklabels([f"#{p}" for p in positions])
 
+
+def _plot_faction_stat(ax: _PlotAxes, games: List[ScrapedGameEntry], field: str, title: str) -> None:
+    """Line chart: mean stat value per round per faction, averaged across games."""
+    # faction_round_values[faction][round_num] = [values...]
+    faction_round_values: Dict[str, Dict[int, List[float]]] = defaultdict(lambda: defaultdict(list))
+
+    for game in games:
+        # Take the last log entry for each round (end-of-round state)
+        last_per_round: Dict[int, ExtractedRoundData] = {}
+        for entry in game["Rounds"]:
+            last_per_round[entry["Round"]] = entry
+
+        for round_num, entry in last_per_round.items():
+            for faction, snapshot in entry["HouseSnapshotData"].items():
+                value = cast(Dict[str, Any], snapshot).get(field)
+                if value is not None:
+                    faction_round_values[faction][round_num].append(float(value))
+
+    all_rounds = sorted({r for rd in faction_round_values.values() for r in rd})
+
+    for faction in ALL_FACTIONS:
+        if faction not in faction_round_values:
+            continue
+        data = faction_round_values[faction]
+        rounds = sorted(data)
+        means = [float(np.mean(data[r])) for r in rounds]
+        ax.plot(rounds, means, label=faction, color=FACTION_COLORS[faction],
+                linewidth=1.8, marker="o", markersize=3)
+
+    ax.set_title(f"{title}  (n = {len(games)} games)")
+    ax.set_xlabel("Round")
+    ax.set_ylabel(field)
+    if all_rounds:
+        ax.set_xticks(all_rounds)
+    ax.legend(fontsize=7, ncol=2)

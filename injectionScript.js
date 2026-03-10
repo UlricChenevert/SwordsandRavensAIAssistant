@@ -5862,6 +5862,13 @@
     return { Players: finalPlayerList };
   };
 
+  // 0_Extraction/Modules/SettingsExtraction.js
+  var extractSettingsData = (client) => {
+    if (client.entireGame === null)
+      throw "Cannot fetch settings!";
+    return { Settings: client.entireGame.gameSettings };
+  };
+
   // 0_Extraction/Utilities/ClassFactories.js
   var CleanHouseSnapshotFactory = (HouseName) => {
     return {
@@ -6004,7 +6011,7 @@
     grabSnapshotConstructors(GameState);
     const extractedData = {};
     const extractedLogData = extractLogData(GameLogs, [extractBidData, extractMilitaryData, extractTurnStateData], GameState);
-    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData]);
+    const extractedMiscData = extractMiscData(GameClient, [extractPlayerData, extractSettingsData]);
     Object.assign(extractedData, extractedLogData);
     Object.assign(extractedData, extractedMiscData);
     return extractedData;

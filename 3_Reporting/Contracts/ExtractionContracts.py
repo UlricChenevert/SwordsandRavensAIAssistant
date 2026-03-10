@@ -30,6 +30,58 @@ class PlayerInfo(TypedDict):
     playerName: str
 
 
+class GameSettings(TypedDict, total=False):
+    setupId: str
+    playerCount: int
+    pbem: bool
+    onlyLive: bool
+    startWhenFull: bool
+    private: bool
+    randomHouses: bool
+    randomChosenHouses: bool
+    adwdHouseCards: bool
+    asosHouseCards: bool
+    cokWesterosPhase: bool
+    vassals: bool
+    seaOrderTokens: bool
+    allowGiftingPowerTokens: bool
+    ironBank: bool
+    tidesOfBattle: bool
+    draftHouseCards: bool
+    draftTracks: bool
+    thematicDraft: bool
+    limitedDraft: bool
+    randomDraft: bool
+    perpetuumRandom: bool
+    blindDraft: bool
+    draftMap: bool
+    selectedDraftDecks: int
+    endless: bool
+    useVassalPositions: bool
+    precedingMustering: bool
+    mixedWesterosDeck1: bool
+    removeTob3: bool
+    removeTobSkulls: bool
+    limitTob2: bool
+    faceless: bool
+    randomStartPositions: bool
+    addPortToTheEyrie: bool
+    victoryPointsCountNeededToWin: int
+    loyaltyTokenCountNeededToWin: int
+    randomVassalAssignment: bool
+    customBalancing: bool
+    houseCardsEvolution: bool
+    houseCardsEvolutionRound: int
+    initialLiveClock: int
+    noPrivateChats: bool
+    tournamentMode: bool
+    fixedClock: bool
+    holdVictoryPointsUntilEndOfRound: bool
+    fogOfWar: bool
+    dragonWar: bool
+    dragonRevenge: bool
+
+
 class BattleLog(TypedDict):
     Attacker: Factions
     AttackerRegion: GameLocation
@@ -121,9 +173,12 @@ class ScrapedGameEntry(TypedDict):
         PlayerExtraction & ExtractedMilitaryData & ExtractedBidData
     """
     Players: List[PlayerInfo]
+    Settings: GameSettings
     combatLogs: List[CombatLog]
     TrackBids: List[CleanBiddingData]
     WildlingBids: List[WildingTrackData]
+    Rounds: List[ExtractedRoundData]
+    InErrorGame: bool
 
 
 # Keyed by game ID string — mirrors: type ScrapedData = { [key: string]: ... }
