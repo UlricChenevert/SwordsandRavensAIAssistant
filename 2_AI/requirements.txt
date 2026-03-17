@@ -1,0 +1,11 @@
+google
+langchain_text_splitters
+langchain_google_genai
+langchain_community
+chromadb
+python-dotenv
+uvicorn
+fastapi
+langchain
+langchain-classic
+langchain_core
