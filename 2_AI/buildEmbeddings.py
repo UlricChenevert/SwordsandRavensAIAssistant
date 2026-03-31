@@ -16,4 +16,3 @@ async def main():
         databaseService.add_texts(game)
 
 asyncio.run(main())
-
