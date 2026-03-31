@@ -11,7 +11,11 @@ SITUATION:
 Based on the rules provided above, what is the best move?
 """
 DOCUMENT_RETRIEVAL_AMOUNT = 5
+
 DB_PATH = "./game_rules_db"
+EXTRACTED_DATA_PATH="../0_Extraction/Data"
+
+EMBEDDINGS_MODEL_NAME = "all-mpnet-base-v2"
 
 HOST_IP="127.0.0.1"
 
