@@ -1,4 +1,5 @@
 // import { ExtractedGameStateData } from "../0_Extraction/Contracts/Contracts.js";
+import { ExtractedGameStateData } from "../0_Extraction/Contracts/Contracts.js";
 import { BidTracks, Factions, GameClient, GameLocation, GameLogData, GameSettings, HouseCard, IHouseSnapshot, IIronBankSnapshot, IngameGameState } from "../0_Extraction/Contracts/GameTypes.js";
 import { BidPlacementChart } from "./AnalysisContracts.js";
 
@@ -11,7 +12,7 @@ type PlayerExtraction = {Players : {playerID:string, playerName: string}[]}
 type SettingsExtraction = {Settings : GameSettings}
 
 type ScrapedData = {
-  [key: string] : PlayerExtraction & ExtractedMilitaryData & ExtractedBidData
+  [key: string] : PlayerExtraction & ExtractedMilitaryData & ExtractedBidData & ExtractedGameStateData
 }
 
 
