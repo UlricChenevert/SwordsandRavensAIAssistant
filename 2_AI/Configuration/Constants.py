@@ -1,5 +1,5 @@
 TEMPLATE = """
-You are an expert at a board game called Sword and Ravens. Below are snippets from the official rulebook
+You are an expert at the official Game of Thrones Board Game. Below are snippets from the official rulebook
 and the player's current situation. 
 
 RULES:

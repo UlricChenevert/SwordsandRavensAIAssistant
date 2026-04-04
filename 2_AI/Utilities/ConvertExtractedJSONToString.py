@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from Contracts.ExtractionContracts import BattleLog, BattleParticipantLog, CleanHouseSnapshot, CombatLog, ExtractedRoundData, GameLocation, GameSettings, PlayerInfo, ScrapedGameEntry, UnitState
+from Contracts.ExtractionContracts import BattleLog, BattleParticipantLog, CleanHouseSnapshot, CombatLog, ExtractedRoundData, GameLocation, GameSettings, PlayerInfo, ScrapedGameEntry, UnitState, CleanBiddingData, WildingTrackData
 
 def convertPlayerToPlainText(players: List[PlayerInfo]):
     final = ""
@@ -64,6 +64,20 @@ def convertCombatToPlainText(combat: CombatLog):
     {combat['WinnerData']["House"]} won!
     """
 
+def convertTrackBidListToPlainText(trackBidList: List[CleanBiddingData]) -> str:
+    plainText = ""
+    for trackBid in trackBidList:
+        plainText += f"""
+    {convertTrackBidToPlainText(trackBid)}"""
+    return plainText
+
+def convertWildlingBidListToPlainText(wildlingBidList: List[WildingTrackData]) -> str:
+    plainText = ""
+    for wildlingBid in wildlingBidList:
+        plainText += f"""
+    {convertWildlingBidToPlainText(wildlingBid)}"""
+    return plainText
+
 def convertHouseSnapshotToPlainText(house : CleanHouseSnapshot):
     return f"""
     {house["FactionName"].capitalize()} Stats:
@@ -82,11 +96,17 @@ def convertUnitLocationsAndOrdersToPlainText(UnitLocationSnapshotData: Dict[Game
 
         unitTypes = [unit["type"] for unit in units]
 
-        output = f"{units[0]['house']} has a {orderToken} order on {location} with units {" ".join(unitTypes)}"
+        output = f"Faction {units[0]['house']} has a {orderToken} order on {location} with units:{",".join(unitTypes)}"
 
         unitLocationsAndOrders.append(output)
 
-    return " ".join(unitLocationsAndOrders)
+    return "\t" + "\n\t".join(unitLocationsAndOrders)
+
+def convertTrackBidToPlainText(trackBid: CleanBiddingData) -> str:
+    return f"Faction {trackBid['Faction']} bid {trackBid['Amount']} on track {trackBid['Track']}"
+
+def convertWildlingBidToPlainText(wildlingBid: WildingTrackData) -> str:
+    return f"Faction {wildlingBid['Faction']} bid {wildlingBid['Amount']}"
 
 def convertRoundToPlainText(round : ExtractedRoundData):
     factionInformation = []
@@ -99,12 +119,13 @@ def convertRoundToPlainText(round : ExtractedRoundData):
     Round {round['Round']} Stats: 
 
     
-    Fiefdom Track: {" ".join(round['FiefdomTrack'])}
-    Kings Court Track: {" ".join(round["KingsCourtThroneTrack"])}
-    Iron Throne Track: {" ".join(round['IronThroneTrack'])}
+    Fiefdom Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['FiefdomTrack'])])}
+    Kings Court Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['KingsCourtThroneTrack'])])}
+    Iron Throne Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['IronThroneTrack'])])}
 
     {"\n".join(factionInformation)}
 
+    Unit Locations and Orders:
     {convertUnitLocationsAndOrdersToPlainText(round['UnitLocationSnapshotData'], round['OrderTokenChoices'])}
     """
     return output

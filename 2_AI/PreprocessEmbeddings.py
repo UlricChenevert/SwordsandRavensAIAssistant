@@ -13,6 +13,8 @@ databaseService = Chroma(persist_directory=DB_PATH, embedding_function=embedding
 
 from Utilities.LoadJSONData import loadScrappedData
 from Utilities.ConvertExtractedJSONToString import buildContextForEvent, convertCombatToPlainText, convertPlayerToPlainText, convertSettingsToPlainText
+from Utilities.ConvertExtractedJSONToString import convertTrackBidListToPlainText, convertWildlingBidListToPlainText
+from Utilities.JoinJSONData import joinTrackBidsByRound, joinWildlingBidsByRound
 
 async def main():
     games = await loadScrappedData(10)
@@ -47,11 +49,23 @@ async def main():
 
             documentStrings.append(text)
 
+        joinedBids = joinTrackBidsByRound(game["TrackBids"])
+        for roundID in joinedBids.keys():
+            # Context part (whats going on in the world) Previous Bid tracks, house power tokens, etc; Players 
+            context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
 
-        # for trackBidEvent in game["combatLogs"]:
+            biddingText = convertTrackBidListToPlainText(joinedBids[roundID])
+            text = f"Context\n {context} \nBidding {biddingText}"
+            documentStrings.append(text)
+            
+        joinedBids = joinWildlingBidsByRound(game["WildlingBids"])
+        for roundID in joinedBids.keys():
+            # Context part (whats going on in the world) Previous Bid tracks, house power tokens, etc; Players 
+            context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
 
-
-        # for wildingBidEvent in game["combatLogs"]:
+            biddingText = convertWildlingBidListToPlainText(joinedBids[roundID])
+            text = f"Context\n {context} \nBidding {biddingText}"
+            documentStrings.append(text)
             
         finalDocument = "\n".join(documentStrings)
 
