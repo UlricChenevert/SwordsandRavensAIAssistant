@@ -12,9 +12,14 @@ class AdviseRetrievalType(Enum):
     COMBAT = "combat"
     OTHER = "other"
 
+class GeminiModel(str, Enum):
+    FLASH_2_0 = "gemini-2.0-flash"
+    PRO_2_5   = "gemini-2.5-pro"
+
 class PromptRequest(BaseModel):
     geminiKey: str
     prompt: str
     context: str
     aiRetrievalType: AIRetrievalType
     adviseRetrievalType: AdviseRetrievalType
+    model: GeminiModel = GeminiModel.FLASH_2_0
