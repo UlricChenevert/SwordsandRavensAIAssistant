@@ -3789,7 +3789,7 @@
   });
 
   // 2a_Interaction/Config/General.js
-  var SERVER_URL = "http://127.0.0.1:5002/";
+  var SERVER_URL = "https://got.chenevertsoftwareservices.com/";
 
   // 2a_Interaction/Contracts/ExtensionModel.js
   var import_knockout = __toESM(require_knockout_latest(), 1);
