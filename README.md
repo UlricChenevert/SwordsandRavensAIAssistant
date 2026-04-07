@@ -18,27 +18,21 @@ The assistant will:
 
 ### High-level Process
 
-**Phase 1: Data Collection (in progress)**
+**Phase 1: Data Collection (complete)**
 
-The injection script hooks into the game client's `onMessage` deserialization pipeline via Tampermonkey and captures game events as they happen. Data is downloaded as JSON at the end of each game.
+The injection script hooks into the live game client object via a browser extension and captures game state on demand. Data is downloaded as JSON. A Tampermonkey version also exists for automated capture at the end of each game.
 
-Target: ~1,000 games across multiple players. The scraper is already built — this is purely a data collection problem.
+**Phase 2: Feature Extraction & Embedding (complete)**
 
-**Phase 2: Feature Extraction & Embedding**
+Raw game JSON is converted into structured game-state feature vectors for each decision point (bids, combats) and embedded into a vector database (ChromaDB). Separate corpora exist for combats, track bids, wildling bids, and general rules.
 
-Convert raw game JSON into structured game-state feature vectors for each decision point (bids, combats). Each vector captures full board context at the moment of the decision.
+**Phase 3: RAG Inference Layer (complete)**
 
-These vectors are embedded (via a text or numeric embedding model) and stored in a vector database alongside the decision taken and its eventual outcome (win/loss, rank, delta). This is the retrieval corpus.
+At inference time, the current game state is embedded and used to query the vector store for the K most similar historical situations. The retrieved examples — state, action taken, and outcome — are passed to the LLM as context alongside the relevant rules. The LLM (Gemini) reasons over these grounded examples to produce a recommendation.
 
-**Phase 3: RAG Inference Layer**
+**Phase 4: Assistant Interface (complete)**
 
-At inference time, the current game state is embedded and used to query the vector store for the K most similar historical situations. The retrieved examples — state, action taken, and outcome — are passed to the LLM as context.
-
-The LLM reasons over these grounded examples to produce a recommendation: what to bid, which card to play, and why.
-
-**Phase 4: Assistant Interface**
-
-A lightweight interface that accepts the current game state, runs the RAG pipeline, and presents recommendations during live play.
+A Firefox browser extension provides a live in-game assistant. It extracts the current game state directly from the page, attaches the relevant context (combat log, track bids, or wildling bids depending on advice type), and queries the RAG server — all without leaving the game.
 
 ---
 
@@ -85,36 +79,48 @@ Natural-language recommendation + reasoning
 
 ---
 
-### Development Cycle (Extraction)
+### Development Cycle
 
-Run tasks with VSCode Task Runner:
-- Watch Typescript (`watch.ps1`)
-- Serve Injection Script (`host.ps1`)
-- Reload authenticated page
+Run tasks with the VSCode Task Runner (`.vscode/tasks.json`):
+
+| Task | Description |
+|------|-------------|
+| Watch Typescript | Compiles `.ts` → `.js` on save |
+| Bundle Injection | Watches `0_Extraction/**/*.js` and rebuilds `injectionScript.js` |
+| Watch Content Script | Watches `2a_Interaction/**/*.ts` and rebuilds `ActiveWindowScript.js` (IIFE, no module wrapper) |
+| Watch Extension | Watches `2a_Interaction/**/*.js` and rebuilds `extension.js` |
+| Serve Injection Script | Hosts the injection script locally for Tampermonkey |
+| Run Analysis | Runs the reporting pipeline |
 
 ---
 
 ### Project Structure
 
 ```
-0_Extraction/         - Browser injection script (TypeScript, compiled to JS)
+0_Extraction/         - Game state extraction (TypeScript → bundled JS)
   Data/               - Raw scraped JSON files (one per game session)
+  Framework/          - Extraction engine, data download utilities
+  Modules/            - Per-feature extractors (bids, combat, rounds, players)
 !Contracts/           - TypeScript type definitions for scraped data
+2a_Interaction/       - Firefox browser extension (live assistant)
+  manifest.json       - Extension manifest (Manifest V2)
+  UI.html             - Popup interface
+  extension.js        - Bundled popup logic (knockout, marked, DOMPurify)
+  ActiveWindowScript.js - Content script: handles injectScript / getContext messages
+  injectionScript.js  - Bundled extraction script injected into page context
+  Config/             - Server URL constant
+  Contracts/          - Extension data model (ExtensionModel.ts)
+2_AI/                 - RAG inference server (Python / FastAPI)
+  server.py           - FastAPI endpoint
+  Contracts/          - Request/response models (Pydantic)
+  Utilities/          - Prompt builder, game state → plain text serializer
+  Services/           - ChromaDB vector store connections
+  DB/                 - Persisted ChromaDB corpora (rules, combat, bids, wildlings)
 2_Reporting/          - Python analysis and visualization
   Contracts/          - Python mirrors of the TS contracts
   Framework/          - Data loader, reporting engine
   Modules/            - Display, per-analyzer modules
-Training/
-  format_data.py      - Joins events to game state, extracts feature vectors + outcome labels
-  embed_corpus.py     - Embeds feature vectors, builds and persists the vector store
-  evaluate_retrieval.py - Measures retrieval quality (do top-K neighbors share the same outcome?)
-Inference/
-  retrieve.py         - Embeds current game state, queries vector store for top-K neighbors
-  explain.py          - Formats retrieved examples into LLM prompt, calls Claude/GPT-4 API
-  predict.py          - End-to-end: retrieve + explain → recommendation
-RAG/
-  corpus/             - Persisted vector store (FAISS index + metadata)
-  prompts/            - Prompt templates for each decision type
+.Tools/               - PowerShell build/watch scripts
 ```
 
 ---
@@ -230,13 +236,13 @@ It returns a 3-5 sentence plain-language recommendation citing specific retrieve
 
 ### Roadmap
 
-- [x] Proof-of-concept scraper (6 games collected)
-- [ ] Collect ~1,000 games
-- [ ] Build `Training/format_data.py` — state join, card availability tracking, outcome label generation
-- [ ] Build `Training/embed_corpus.py` — embed feature vectors, populate vector store
-- [ ] Smoke-test retrieval on 6 games: are neighbors visually sensible?
-- [ ] Build `Inference/retrieve.py` + `Inference/explain.py`
+- [x] Proof-of-concept scraper
+- [x] Full extraction pipeline (combat, bids, wildlings, round snapshots)
+- [x] ChromaDB corpora (rules, combat, track bids, wildling bids)
+- [x] RAG inference server (FastAPI + Gemini)
+- [x] Firefox browser extension with live game state extraction
+- [x] In-extension advice types: Combat, Track Bid, Wildling Bid, Other
+- [x] Collect ~250 games
 - [ ] Evaluate retrieval quality (outcome consistency, action overlap)
-- [ ] Full corpus build on 1,000-game dataset
 - [ ] Tune prompt templates per decision type
-- [ ] User-facing assistant interface for live play
+- [ ] Production deployment (hosted server, shareable extension)

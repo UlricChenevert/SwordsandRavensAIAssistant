@@ -3820,6 +3820,7 @@
     TokensOut;
     AIRetrievalType;
     RetrievalAmount;
+    NoContext;
     constructor(GeminiKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
       this.GeminiKey = GeminiKey;
       this.Prompt = Prompt;
@@ -3838,6 +3839,7 @@
       this.TokensOut = import_knockout.default.observable(void 0);
       this.AIRetrievalType = import_knockout.default.observable(AIRetrievalType["RAG"]);
       this.RetrievalAmount = import_knockout.default.observable(void 0);
+      this.NoContext = import_knockout.default.observable(false);
       this.RawMode.subscribe((isRawMode) => {
         if (!isRawMode)
           return;
@@ -3878,7 +3880,7 @@
             this.ErrorMessage("Prompt is empty! No data can be extracted!");
             return;
           }
-          const context = await this.getContext();
+          const context = this.NoContext() ? null : await this.getContext();
           body = JSON.stringify({
             "geminiKey": this.GeminiKey() ?? "",
             "prompt": this.Prompt() ?? "",

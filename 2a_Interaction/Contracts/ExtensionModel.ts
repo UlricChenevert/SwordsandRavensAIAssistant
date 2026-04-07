@@ -59,6 +59,7 @@ export class ExtensionModel {
     TokensOut: KnockoutObservable<number | undefined>
     AIRetrievalType: KnockoutObservable<typeof AIRetrievalType[keyof typeof AIRetrievalType]>
     RetrievalAmount: KnockoutObservable<number | undefined>
+    NoContext: KnockoutObservable<boolean>
 
      constructor (
         public GeminiKey : KnockoutObservable<string | undefined>,
@@ -79,6 +80,7 @@ export class ExtensionModel {
         this.TokensOut = ko.observable<number | undefined>(undefined)
         this.AIRetrievalType = ko.observable<typeof AIRetrievalType[keyof typeof AIRetrievalType]>(AIRetrievalType["RAG"])
         this.RetrievalAmount = ko.observable<number | undefined>(undefined)
+        this.NoContext = ko.observable(false)
 
         this.RawMode.subscribe((isRawMode)=>{
             if (!isRawMode) return
@@ -115,7 +117,7 @@ export class ExtensionModel {
             } else {
                 if (!this.GeminiKey()) { this.ErrorMessage("Gemini key is empty! No data can be extracted!"); return }
                 if (!this.Prompt()) { this.ErrorMessage("Prompt is empty! No data can be extracted!"); return }
-                const context = await this.getContext()
+                const context = this.NoContext() ? null : await this.getContext()
                 body = JSON.stringify({
                     "geminiKey": this.GeminiKey() ?? "",
                     "prompt": this.Prompt() ?? "",

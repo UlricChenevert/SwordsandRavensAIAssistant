@@ -58,6 +58,11 @@
                data-bind="textInput: RetrievalAmount">
       </div>
 
+      <div class="raw-mode-row" data-bind="visible: AdvancedMode">
+        <input id="no-context" type="checkbox" data-bind="checked: NoContext">
+        <label for="no-context">No Context</label>
+      </div>
+
       <div class="raw-mode-row">
         <input id="advanced-mode" type="checkbox" data-bind="checked: AdvancedMode">
         <label for="advanced-mode">Advanced</label>

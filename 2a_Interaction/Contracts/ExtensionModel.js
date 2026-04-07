@@ -33,6 +33,7 @@ export class ExtensionModel {
     TokensOut;
     AIRetrievalType;
     RetrievalAmount;
+    NoContext;
     constructor(GeminiKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
         this.GeminiKey = GeminiKey;
         this.Prompt = Prompt;
@@ -51,6 +52,7 @@ export class ExtensionModel {
         this.TokensOut = ko.observable(undefined);
         this.AIRetrievalType = ko.observable(AIRetrievalType["RAG"]);
         this.RetrievalAmount = ko.observable(undefined);
+        this.NoContext = ko.observable(false);
         this.RawMode.subscribe((isRawMode) => {
             if (!isRawMode)
                 return;
@@ -92,7 +94,7 @@ export class ExtensionModel {
                     this.ErrorMessage("Prompt is empty! No data can be extracted!");
                     return;
                 }
-                const context = await this.getContext();
+                const context = this.NoContext() ? null : await this.getContext();
                 body = JSON.stringify({
                     "geminiKey": this.GeminiKey() ?? "",
                     "prompt": this.Prompt() ?? "",
