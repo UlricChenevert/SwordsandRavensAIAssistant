@@ -18,25 +18,21 @@ import { extractGameData } from "./Framework/ExtractGameData.js";
             // (document.getElementById('game-container') as HTMLElement).style.display = 'none';
             console.log("Tampermonkey: Game client and state found. Injecting hook.");
             const gameClient = window.gameClient;
-            const originalOnMessage = gameClient.onMessage;
-            gameClient.onMessage = function () {
-                const originalFunction = originalOnMessage.apply(this, arguments);
-                if (!downloadedData) {
-                    try {
-                        console.log(`--- EXTRACTING GAME STATE FOR ${gameClient.entireGame?.name} ---`);
-                        const extractedData = extractGameData(gameClient);
-                        const finalJSON = { [gameClient.authData.gameId]: extractedData };
-                        // console.log(extractedData)
-                        DownloadData(finalJSON, "GameOfThronesGameData");
-                        console.log(`--- CAPTURED GAME STATE FOR ${gameClient.entireGame?.name} ---`);
-                        downloadedData = true;
-                    }
-                    catch (error) {
-                        console.error("Tampermonkey Hook Error:", error);
-                    }
+            if (!downloadedData) {
+                try {
+                    console.log(`--- EXTRACTING GAME STATE FOR ${gameClient.entireGame?.name} ---`);
+                    const extractedData = extractGameData(gameClient);
+                    const finalJSON = { [gameClient.authData.gameId]: extractedData };
+                    // console.log(extractedData)
+                    DownloadData(finalJSON, "GameOfThronesGameData");
+                    window.dispatchEvent(new CustomEvent('sar-data-downloaded', { detail: extractedData }));
+                    console.log(`--- CAPTURED GAME STATE FOR ${gameClient.entireGame?.name} ---`);
+                    downloadedData = true;
                 }
-                return originalFunction;
-            };
+                catch (error) {
+                    console.error("Tampermonkey Hook Error:", error);
+                }
+            }
             // (document.getElementById('game-container') as HTMLElement).style.display = 'block';
         }
     }, 500); // Check every half second

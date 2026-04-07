@@ -28,12 +28,7 @@ import { extractGameData } from "./Framework/ExtractGameData.js";
             
             const gameClient = (window as any).gameClient as GameClient; 
             
-            const originalOnMessage = gameClient.onMessage;
-            
-            gameClient.onMessage = function() {
-                const originalFunction = originalOnMessage.apply(this, arguments as any);
-                
-                if (!downloadedData){
+            if (!downloadedData){
                 try {
                     console.log(`--- EXTRACTING GAME STATE FOR ${gameClient.entireGame?.name} ---`);
 
@@ -43,16 +38,16 @@ import { extractGameData } from "./Framework/ExtractGameData.js";
                     
                     // console.log(extractedData)
                     DownloadData(finalJSON, "GameOfThronesGameData")
+
+                    window.dispatchEvent(new CustomEvent('sar-data-downloaded'));
                     
                     console.log(`--- CAPTURED GAME STATE FOR ${gameClient.entireGame?.name} ---`);
                     downloadedData = true
 
                 } catch (error) {
                     console.error("Tampermonkey Hook Error:", error);
-                }}
-                
-                return originalFunction; 
-            };
+                }
+            }
             
             // (document.getElementById('game-container') as HTMLElement).style.display = 'block';
         }

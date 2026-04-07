@@ -15,6 +15,7 @@
     "http://127.0.0.1:5002/",
     "https://got.chenevertsoftwareservices.com/"
   ],
+  "web_accessible_resources": ["injectionScript.js"],
   "content_scripts": [
   {
     "matches": ["*://swordsandravens.net/play/*"],

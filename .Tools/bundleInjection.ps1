@@ -1,1 +1,1 @@
-.\node_modules\.bin\esbuild .\0_Extraction\InjectScript.js --bundle --outfile=injectionScript.js
+.\node_modules\.bin\esbuild .\0_Extraction\InjectScript.js --bundle --outfile=.\0_Extraction\bundledInjectionScript.js
