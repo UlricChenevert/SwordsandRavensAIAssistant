@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Swords and Ravens GOT Assistant",
+  "version": "1.0",
+  "icons": {
+    "48": "raven.svg",
+    "96": "raven.svg"
+  },
+  "permissions": [
+    "*://swordsandravens.net/*"
+  ],
+  "content_scripts": [
+  {
+    "matches": ["*://swordsandravens.net/play/*"],
+    "js": ["ActiveWindowScript.js"],
+    "run_at": "document_idle"
+  }
+]
+}
