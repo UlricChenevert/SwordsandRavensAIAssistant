@@ -49,7 +49,7 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
     except Exception as e:
         
 
-        error_str = str(e)
+        error_str = repr(e)
         if "API_KEY_INVALID" in error_str or "API key not valid" in error_str:
             error_message = "Invalid Gemini API key. Please check your key and try again."
         elif "PERMISSION_DENIED" in error_str:
