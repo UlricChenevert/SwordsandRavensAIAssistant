@@ -5,6 +5,7 @@ T = TypeVar("T")
 
 
 class ResponseMetaData(BaseModel):
+    InError: Optional[bool] = False
     errorMessage: Optional[str] = None
 
 

@@ -1,0 +1,1 @@
+nodemon --watch "./2a_Interaction/**/*.js" --exec "powershell -File ./.Tools/bundleExtension.ps1"

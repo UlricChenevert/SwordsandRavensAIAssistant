@@ -11,7 +11,7 @@ Based on the rules provided above, what is the best move?
 """
 DOCUMENT_RETRIEVAL_AMOUNT = 5
 
-DB_PATH = "./game_rules_db"
+DB_PATH = "./2_AI/Data/game_rules_db"
 EXTRACTED_DATA_PATH="../0_Extraction/Data"
 RULES_DATA_PATH = "./2_AI/Data/rules.md"
 

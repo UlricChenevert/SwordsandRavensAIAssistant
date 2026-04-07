@@ -6,8 +6,14 @@
     "48": "raven.svg",
     "96": "raven.svg"
   },
-  "permissions": [
-    "*://swordsandravens.net/*"
+  "browser_action": {
+    "default_popup": "UI.html",
+    "default_icon": "raven.svg"
+  },
+"permissions": [
+    "*://swordsandravens.net/*",
+    "http://127.0.0.1:5002/",
+    "https://got.chenevertsoftwareservices.com/"
   ],
   "content_scripts": [
   {

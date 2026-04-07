@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Bundle JavaScript",
+        "label": "Bundle Injection",
         "type": "shell",
-        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\watchJavaScript.ps1",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\watchInjection.ps1",
         "isBackground": true,
         "presentation": 
         {
@@ -44,6 +44,17 @@
         "presentation": 
         {
           "reveal": "always",
+          "panel": "dedicated",
+        },
+      },
+      {
+        "label": "Watch Extension",
+        "type": "shell",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\watchExtension.ps1",
+        "isBackground": false,
+        "presentation":
+        {
+          "reveal": "silent",
           "panel": "dedicated",
         },
       },

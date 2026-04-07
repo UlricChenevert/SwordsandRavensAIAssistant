@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 import uvicorn
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -30,6 +31,7 @@ limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler) # type: ignore
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["POST"], allow_headers=["Content-Type"])
 
 load_dotenv()
 
@@ -38,7 +40,7 @@ load_dotenv()
 @limiter.limit(USAGE_LIMIT)
 def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptResponse]:
     try:
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0, google_api_key=body.geminiKey)
+        llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey)
 
         promptTemplate = ChatPromptTemplate.from_template(TEMPLATE)
 
@@ -62,9 +64,19 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
         print(f"An error occurred: {e}\n\n=====================================================\n\n")
         traceback.print_exc()
 
+        error_str = str(e)
+        if "API_KEY_INVALID" in error_str or "API key not valid" in error_str:
+            error_message = "Invalid Gemini API key. Please check your key and try again."
+        elif "PERMISSION_DENIED" in error_str:
+            error_message = "Gemini API key does not have permission to use this model."
+        elif "RESOURCE_EXHAUSTED" in error_str or "quota" in error_str.lower():
+            error_message = "Gemini API quota exceeded. Please try again later."
+        else:
+            error_message = f"An error occurred. Please try again later, and please submit an issue at {GITHUB_ISSUES_URL}."
+
         return GeneralResponse(
             body=PromptResponse(reply="", contextUsed=0),
-            metadata=ResponseMetaData(errorMessage=f"An error occurred. Please try again later, and please submit a issue at {GITHUB_ISSUES_URL}.")
+            metadata=ResponseMetaData(InError=True, errorMessage=error_message)
             )
 
 if __name__ == "__main__":
