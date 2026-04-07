@@ -16,4 +16,5 @@ class GeneralResponse(BaseModel, Generic[T]):
 
 class PromptResponse(BaseModel):
     reply: str
-    contextUsed: int
+    tokenInput: int
+    tokenOutput: int

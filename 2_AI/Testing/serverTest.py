@@ -9,7 +9,7 @@ params = {
     }
 
 from langchain_community.vectorstores import Chroma
-from Configuration.Constants import WILDLING_BID_DB_PATH, TRACK_BID_DB_PATH, RULES_DB_PATH, COMBAT_DB_PATH, DOCUMENT_RETRIEVAL_AMOUNT
+from Configuration.Constants import DEFAULT_DOCUMENT_RETRIEVAL_AMOUNT
 from dotenv import load_dotenv
 
 from Services.EmbeddingsService import embeddings
@@ -17,7 +17,7 @@ from Services.EmbeddingsService import embeddings
 load_dotenv()
 
 ruleDBConnection = Chroma( persist_directory="game_rules_db", embedding_function=embeddings)
-rrs = ruleDBConnection.as_retriever(search_kwargs={"k": DOCUMENT_RETRIEVAL_AMOUNT})
+rrs = ruleDBConnection.as_retriever(search_kwargs={"k": DEFAULT_DOCUMENT_RETRIEVAL_AMOUNT})
 h = rrs.invoke(params["query"])
 
 response = requests.get(url, params=params)

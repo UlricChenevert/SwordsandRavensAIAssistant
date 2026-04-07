@@ -8,44 +8,13 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-from langchain_classic.chains import create_retrieval_chain
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-
-
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.prompts import ChatPromptTemplate
-
 from langchain_core.output_parsers import StrOutputParser
-from operator import itemgetter
 
-from Configuration.Constants import GITHUB_ISSUES_URL, HOST_IP, PORT, RAG_TEMPLATE, USAGE_LIMIT, ZERO_SHOT_TEMPLATE
+from Configuration.Constants import GITHUB_ISSUES_URL, HOST_IP, PORT, USAGE_LIMIT
 
-from Utilities.General import combineTextFragments
-from Utilities.ConvertExtractedJSONToString import (
-    convertRoundToPlainText,
-    convertPlayerToPlainText,
-    convertTrackBidListToPlainText,
-    convertWildlingBidListToPlainText,
-    convertCombatToPlainText,
-)
-from Contracts.RequestContracts import AIRetrievalType, GameContext
+from Utilities.BuildPrompts import buildPrompts
 
-def buildGameStateString(context: GameContext) -> str:
-    parts = [
-        f"Players: {convertPlayerToPlainText(context.players)}",
-        convertRoundToPlainText(context.gameState),
-    ]
-    if context.trackBids:
-        parts.append(f"Track Bids:\n{convertTrackBidListToPlainText(context.trackBids)}")
-    if context.wildlingBids:
-        parts.append(f"Wildling Bids:\n{convertWildlingBidListToPlainText(context.wildlingBids)}")
-    if context.combat:
-        parts.append(f"Last Combat:\n{convertCombatToPlainText(context.combat)}")
-    return "\n\n".join(parts)
-
-from Services.LLMService import llmService
-from Services.DatabaseService import combatRetrieverService, ruleRetrieverService, wildlingBidRetrieverService, trackBidRetrieverService
-from Contracts.RequestContracts import PromptRequest 
+from Contracts.RequestContracts import PromptRequest
 from Contracts.ResponseContracts import GeneralResponse, PromptResponse, ResponseMetaData
 import traceback
 
@@ -64,31 +33,14 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
     try:
         llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey, max_retries=0)
         
-        if body.aiRetrievalType == AIRetrievalType.RAG:
-            promptTemplate = ChatPromptTemplate.from_template(RAG_TEMPLATE)
-        else:
-            promptTemplate = ChatPromptTemplate.from_template(ZERO_SHOT_TEMPLATE)
-
+        prompt = buildPrompts(body.aiRetrievalType, body.prompt, body.context, body.adviseRetrievalType, body.retrievalAmount)
+        result = llm.invoke(prompt)
+        response = StrOutputParser().invoke(result)
+        tokens_input = result.usage_metadata.get("input_tokens", 0) if result.usage_metadata else 0
+        tokens_used = result.usage_metadata.get("output_tokens", 0) if result.usage_metadata else 0
         
-
-        rag_chain = (
-            {
-                "context": itemgetter("question") | ruleRetrieverService | combineTextFragments,
-                "game_state": itemgetter("game_state"),
-                "question": itemgetter("question")
-            }
-            | promptTemplate
-            | llm.invoke
-            | StrOutputParser()
-        )
-
-        response = rag_chain.invoke({
-            "question": body.prompt,
-            "game_state": buildGameStateString(body.context) if body.context else "No game state provided."
-        })
-
         return GeneralResponse(
-            body=PromptResponse(reply=response, contextUsed=0),
+            body=PromptResponse(reply=response, tokenInput=tokens_input, tokenOutput=tokens_used),
             metadata=ResponseMetaData()
             )
 
@@ -107,7 +59,7 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
             error_message = f"An error occurred. Please try again later, and please submit an issue at {GITHUB_ISSUES_URL}."
 
         return GeneralResponse(
-            body=PromptResponse(reply="", contextUsed=0),
+            body=PromptResponse(reply="", tokenInput=0, tokenOutput=0),
             metadata=ResponseMetaData(InError=True, errorMessage=error_message)
             )
 

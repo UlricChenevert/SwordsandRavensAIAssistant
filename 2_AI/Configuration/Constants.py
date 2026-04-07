@@ -1,21 +1,12 @@
-RAG_TEMPLATE = """
+from enum import Enum
+
+GENERAL_TEMPLATE = """
 You are an expert at the official Game of Thrones Board Game.
-Below are snippets from the official rulebook and the player's current game state.
 
 SOME RELEVANT RULES:
 {rules}
 
-GAME STATE:
-{game_state}
-
-QUESTION:
-{question}
-
-At the end of your response, say exactly what you would do in this situation.
-"""
-
-ZERO_SHOT_TEMPLATE = """
-You are an expert at the official Game of Thrones Board Game. Below is the player's current situation. 
+{extras}
 
 GAME STATE:
 {game_state}
@@ -25,16 +16,28 @@ QUESTION:
 
 Based on the rules and game state above, answer the question.
 """
-DOCUMENT_RETRIEVAL_AMOUNT = 10
 
-RULES_DB_PATH = "./2_AI/Data/game_rules_db"
-TRACK_BID_DB_PATH = "./2_AI/Data/track_bid_db"
-WILDLING_BID_DB_PATH = "./2_AI/Data/wildling_bid_db"
-COMBAT_DB_PATH = "./2_AI/Data/combat_db"
+EXTRA_DATA_TEMPLATE = """
+SIMILAR GAME EVENT:
+{retrieved_state}
+"""
+
+DEFAULT_DOCUMENT_RETRIEVAL_AMOUNT = 10
+
+DATABASE_PATH = "./2_AI/Data/DocumentDatabase"
+
+class DatabaseTables(Enum):
+    Rules = "Rules"
+    TrackBid = "TrackBid"
+    WildingBid = "TrackBid"
+    CombatBid = "TrackBid"
+    
+
 EXTRACTED_DATA_PATH="../0_Extraction/Data"
+
 RULES_DATA_PATH = "./2_AI/Data/rules.md"
 
-EMBEDDINGS_MODEL_NAME = "models/gemini-embedding-001"
+EMBEDDINGS_MODEL_NAME = "all-mpnet-base-v2"
 
 HOST_IP="127.0.0.1"
 

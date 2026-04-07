@@ -2,23 +2,11 @@ import asyncio
 from typing import List
 from langchain_community.vectorstores import Chroma
 from langchain_text_splitters import MarkdownHeaderTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from Configuration.Constants import RULES_DB_PATH, EMBEDDINGS_MODEL_NAME, RULES_DATA_PATH, WILDLING_BID_DB_PATH, TRACK_BID_DB_PATH, COMBAT_DB_PATH
-from dotenv import load_dotenv
-import time
+from Configuration.Constants import  RULES_DATA_PATH
+from Services.EmbeddingsService import embeddings
+from Services.DatabaseService import ruleDBConnection, combatDBConnection, bidTrackDBConnection
 
-batch_size = 100
 
-load_dotenv()
-
-embeddingService = GoogleGenerativeAIEmbeddings(model=EMBEDDINGS_MODEL_NAME)
-rulesDatabaseService = Chroma(persist_directory=RULES_DB_PATH, embedding_function=embeddingService)
-trackBidDatabaseService = Chroma(persist_directory=TRACK_BID_DB_PATH, embedding_function=embeddingService)
-combatDatabaseService = Chroma(persist_directory=COMBAT_DB_PATH, embedding_function=embeddingService)
-wildlingBidDatabaseService = Chroma(persist_directory=WILDLING_BID_DB_PATH, embedding_function=embeddingService)
-
-# def testDatabase():
-#     results = databaseService.similarity_search("armies defeated", k=10, filter={"type": "combat_log"})
 
 from Utilities.LoadJSONData import loadScrappedData
 from Utilities.ConvertExtractedJSONToString import buildContextForEvent, convertCombatToPlainText, convertPlayerToPlainText, convertSettingsToPlainText
@@ -26,141 +14,70 @@ from Utilities.ConvertExtractedJSONToString import convertTrackBidListToPlainTex
 from Utilities.JoinJSONData import joinTrackBidsByRound, joinWildlingBidsByRound
 
 async def main():
-    games = await loadScrappedData(251)
+    games = await loadScrappedData(-1)
 
-    documents = []
-
-    #Rules Conversion
-    text = ""
+    # Rules Conversion
     with open(RULES_DATA_PATH, encoding='utf-8', errors="replace") as file:
         text = file.read()
 
     splitter = MarkdownHeaderTextSplitter(
         headers_to_split_on=[("#", "Header 1"), ("##", "Header 2"), ("###", "Header 3")]
     )
-    chunks = splitter.split_text(text)
-    batch_size = 100
-    for i in range(0, len(chunks), batch_size):
-        batch = chunks[i : i + batch_size]
-        
-        rulesDatabaseService.add_documents(batch)
-        print(f"Sleeping 60s")
-        
-        #wait 60 seconds to let the rate limit reset
-        time.sleep(60)
+    ruleDBConnection.add_documents(splitter.split_text(text))
 
-    # JSON Conversion
-    batch_size = 51
-    print("Combat Embeddings")
+    # Combat Embeddings
+    documents = []
     for game in games:
-        documentStrings : List[str] = []
-        
+        documentStrings: List[str] = []
         playerString = convertPlayerToPlainText(game["Players"])
-        settingsString = convertSettingsToPlainText(game.get("Settings")) if not game.get("Settings") is None else "None found"
+        settingsString = convertSettingsToPlainText(game.get("Settings")) if game.get("Settings") is not None else "None found"
 
         for combatEvent in game["combatLogs"]:
-            try:
-                # Context part (whats going on in the world) Previous Bid tracks, house power tokens, etc; Players 
-                context = buildContextForEvent(playerString, settingsString, combatEvent["CorrespondingTurnIndex"], game["GameID"], game["Rounds"])
-            except Exception as e:
-                print(e)
-                continue
-            # Action part (whats going on right now) Bidding, combat
+            context = buildContextForEvent(playerString, settingsString, combatEvent["CorrespondingTurnIndex"], game["GameID"], game["Rounds"])
+            
             action = convertCombatToPlainText(combatEvent)
+            documentStrings.append(f"Context\n {context} \nCombat {action}")
 
-            text = f"Context\n {context} \nCombat {action}"
+        documents.append("\n".join(documentStrings))
 
-            documentStrings.append(text)
-        
-        finalDocument = "\n".join(documentStrings)
+    combatDBConnection.add_texts(documents)
 
-        documents.append(finalDocument)
-    
-    for i in range(0, len(documents), batch_size):
-        batch = documents[i : i + batch_size]
-        
-        combatDatabaseService.add_texts(batch)
-        print(f"Sleeping 60s")
-        
-        #wait 60 seconds to let the rate limit reset
-        time.sleep(60)
+    # Track Bid Embeddings
     documents = []
-
-    print("Track Bid Embeddings")
     for game in games:
-        documentStrings : List[str] = []
+        documentStrings = []
         joinedBids = joinTrackBidsByRound(game["TrackBids"])
-
         playerString = convertPlayerToPlainText(game["Players"])
-        settingsString = convertSettingsToPlainText(game.get("Settings")) if not game.get("Settings") is None else "None found"
+        settingsString = convertSettingsToPlainText(game.get("Settings")) if game.get("Settings") is not None else "No settings found"
 
         for roundID in joinedBids.keys():
-            try:
-                # Context part (whats going on in the world) Previous Bid tracks, house power tokens, etc; Players 
-                context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
-
-            except Exception as e:
-                print(e)
-                continue
+            context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
 
             biddingText = convertTrackBidListToPlainText(joinedBids[roundID])
-            text = f"Context\n {context} \nBidding {biddingText}"
-            documentStrings.append(text)
-        
-        finalDocument = "\n".join(documentStrings)
+            documentStrings.append(f"Context\n {context} \nTrack Bidding {biddingText}")
 
-        documents.append(finalDocument)
+        documents.append("\n".join(documentStrings))
 
-    for i in range(0, len(documents), batch_size):
-        batch = documents[i : i + batch_size]
-        
-        trackBidDatabaseService.add_texts(batch)
-        print(f"Sleeping 60s")
-        
-        #wait 60 seconds to let the rate limit reset
-        time.sleep(60)
+    bidTrackDBConnection.add_texts(documents)
 
-    documents = []
-
+    # Wildling Bid Embeddings
     print("Wildling Bid Embeddings")
+    documents = []
     for game in games:
-        documentStrings : List[str] = []
-        joinedBids = joinTrackBidsByRound(game["TrackBids"])
-
+        documentStrings = []
         playerString = convertPlayerToPlainText(game["Players"])
-        settingsString = convertSettingsToPlainText(game.get("Settings")) if not game.get("Settings") is None else "None found"
-        try:
-            joinedBids = joinWildlingBidsByRound(game["WildlingBids"])
-        except Exception as e:
-            print(e)
-            continue
-        for roundID in joinedBids.keys():
-            try:
-                # Context part (whats going on in the world) Previous Bid tracks, house power tokens, etc; Players 
-                context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
+        settingsString = convertSettingsToPlainText(game.get("Settings")) if game.get("Settings") is not None else "None found"
 
-            except Exception as e:
-                print(e)
-                continue
+        joinedBids = joinWildlingBidsByRound(game["WildlingBids"])
+
+        for roundID in joinedBids.keys():
+            context = buildContextForEvent(playerString, settingsString, roundID, game["GameID"], game["Rounds"])
 
             biddingText = convertWildlingBidListToPlainText(joinedBids[roundID])
-            text = f"Context\n {context} \nBidding {biddingText}"
-            documentStrings.append(text)
-        
-        finalDocument = "\n".join(documentStrings)
+            documentStrings.append(f"Context\n {context} \nWilding Bidding {biddingText}")
 
-        documents.append(finalDocument)
-    
-    for i in range(0, len(documents), batch_size):
-        batch = documents[i : i + batch_size]
-        
-        wildlingBidDatabaseService.add_texts(batch)
-        print(f"Sleeping 60s")
-        
-        #wait 60 seconds to let the rate limit reset
-        time.sleep(60)
-            
-        
-       
+        documents.append("\n".join(documentStrings))
+
+    combatDBConnection.add_texts(documents)
 
 asyncio.run(main())

@@ -31,6 +31,7 @@ class GameContext(BaseModel):
 class PromptRequest(BaseModel):
     geminiKey: str
     prompt: str
+    retrievalAmount: Optional[int] = None
     context: Optional[GameContext] = None
     aiRetrievalType: AIRetrievalType
     adviseRetrievalType: AdviseRetrievalType

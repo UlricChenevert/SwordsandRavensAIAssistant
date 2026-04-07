@@ -48,6 +48,8 @@ export class ExtensionModel {
     isLoading: KnockoutObservable<boolean>
     AdvancedMode: KnockoutObservable<boolean>
     GameData: KnockoutObservable<ExtractedGameData | undefined>
+    TokensIn: KnockoutObservable<number | undefined>
+    TokensOut: KnockoutObservable<number | undefined>
 
      constructor (
         public GeminiKey : KnockoutObservable<string | undefined>,
@@ -63,6 +65,8 @@ export class ExtensionModel {
         this.isLoading = ko.observable(false)
         this.AdvancedMode = ko.observable(false)
         this.GameData = ko.observable<ExtractedGameData | undefined>(undefined)
+        this.TokensIn = ko.observable<number | undefined>(undefined)
+        this.TokensOut = ko.observable<number | undefined>(undefined)
 
         this.RawMode.subscribe((isRawMode)=>{
             if (!isRawMode) return
@@ -104,6 +108,8 @@ export class ExtensionModel {
             .then(response => {
                 if (response.metadata?.InError) throw response.metadata.errorMessage ?? "Server returned an error."
 
+                this.TokensIn(response.body?.tokenInput)
+                this.TokensOut(response.body?.tokenOutput)
                 return this.Response(response.body?.reply)
             })
             .catch(err => this.ErrorMessage(String(err)))

@@ -151,3 +151,16 @@ def buildContextForEvent(playerString : str, settingSettings : str, currentGameS
     
     {convertLogIndexToRoundPlainText(currentGameStateReferenceIndex, roundData)}
     """ 
+from Contracts.RequestContracts import GameContext
+def buildGameStateString(context: GameContext) -> str:
+    parts = [
+        f"Players: {convertPlayerToPlainText(context.players)}",
+        convertRoundToPlainText(context.gameState),
+    ]
+    if context.trackBids:
+        parts.append(f"Track Bids:\n{convertTrackBidListToPlainText(context.trackBids)}")
+    if context.wildlingBids:
+        parts.append(f"Wildling Bids:\n{convertWildlingBidListToPlainText(context.wildlingBids)}")
+    if context.combat:
+        parts.append(f"Last Combat:\n{convertCombatToPlainText(context.combat)}")
+    return "\n\n".join(parts)
