@@ -1,21 +1,26 @@
 // have to enable "Access your data for *://swordsandravens.net" in about:addons
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-    if (message.type !== 'injectScript') return;
-
+    if (message.type !== 'injectScript' && message.type !== 'getContext')
+        return;
     fetch(chrome.runtime.getURL('injectionScript.js'))
         .then(r => r.text())
         .then(src => {
-            window.addEventListener('sar-data-downloaded', (e) => {
-                chrome.runtime.sendMessage({ type: 'dataDownloaded', data: e.detail });
+        const script = document.createElement('script');
+        script.textContent = src;
+        document.documentElement.appendChild(script);
+        script.remove();
+        if (message.type === 'injectScript') {
+            window.addEventListener('sar-data-downloaded', () => {
+                sendResponse({ ok: true });
             }, { once: true });
-
-            const script = document.createElement('script');
-            script.textContent = src;
-            document.documentElement.appendChild(script);
-            script.remove();
-
-            sendResponse({ ok: true });
-        });
-
+            window.dispatchEvent(new CustomEvent('sar-download-data'));
+        }
+        else {
+            window.addEventListener('sar-data-downloaded', (e) => {
+                sendResponse({ ok: true, data: e.detail });
+            }, { once: true });
+            window.dispatchEvent(new CustomEvent('sar-attach-data'));
+        }
+    });
     return true; // keep channel open for async sendResponse
 });

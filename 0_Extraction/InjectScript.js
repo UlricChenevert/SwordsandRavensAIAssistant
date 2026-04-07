@@ -10,30 +10,30 @@
 import { DownloadData } from "./Framework/DownloadData.js";
 import { extractGameData } from "./Framework/ExtractGameData.js";
 (function () {
-    console.log("Tampermonkey: Injection attempting to attach to process");
-    let downloadedData = false;
-    const checkInterval = setInterval(() => {
-        if (window.gameClient) {
-            clearInterval(checkInterval); // Stop checking once found
-            // (document.getElementById('game-container') as HTMLElement).style.display = 'none';
-            console.log("Tampermonkey: Game client and state found. Injecting hook.");
-            const gameClient = window.gameClient;
-            if (!downloadedData) {
-                try {
-                    console.log(`--- EXTRACTING GAME STATE FOR ${gameClient.entireGame?.name} ---`);
-                    const extractedData = extractGameData(gameClient);
-                    const finalJSON = { [gameClient.authData.gameId]: extractedData };
-                    // console.log(extractedData)
-                    DownloadData(finalJSON, "GameOfThronesGameData");
-                    window.dispatchEvent(new CustomEvent('sar-data-downloaded', { detail: extractedData }));
-                    console.log(`--- CAPTURED GAME STATE FOR ${gameClient.entireGame?.name} ---`);
-                    downloadedData = true;
-                }
-                catch (error) {
-                    console.error("Tampermonkey Hook Error:", error);
-                }
-            }
-            // (document.getElementById('game-container') as HTMLElement).style.display = 'block';
+    console.log("Injection script loaded!");
+    function extractAndHandle(mode) {
+        const gameClient = window.gameClient;
+        if (!gameClient) {
+            console.error("gameClient not found on window");
+            return;
         }
-    }, 500); // Check every half second
+        try {
+            console.log(`--- EXTRACTING GAME STATE FOR ${gameClient.entireGame?.name} ---`);
+            const extractedData = extractGameData(gameClient);
+            const finalJSON = { [gameClient.authData.gameId]: extractedData };
+            if (mode === 'download') {
+                DownloadData(finalJSON, "GameOfThronesGameData");
+                window.dispatchEvent(new CustomEvent('sar-data-downloaded'));
+            }
+            else {
+                window.dispatchEvent(new CustomEvent('sar-data-downloaded', { detail: extractedData }));
+            }
+            console.log(`--- CAPTURED GAME STATE FOR ${gameClient.entireGame?.name} ---`);
+        }
+        catch (error) {
+            console.error("Tampermonkey Hook Error:", error);
+        }
+    }
+    window.addEventListener('sar-download-data', () => extractAndHandle('download'), { once: true });
+    window.addEventListener('sar-attach-data', () => extractAndHandle('attach'), { once: true });
 })();

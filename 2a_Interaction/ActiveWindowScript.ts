@@ -1,23 +1,27 @@
 // have to enable "Access your data for *://swordsandravens.net" in about:addons
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    if (message.type !== 'injectScript' && message.type !== 'getContext') return;
 
-function inject() {
-  const script = document.createElement("script");
-  script.textContent = `
-    // This runs in the REAL page context
-    console.log("window var:", window);
+    fetch(chrome.runtime.getURL('injectionScript.js'))
+        .then(r => r.text())
+        .then(src => {
+            const script = document.createElement('script');
+            script.textContent = src;
+            document.documentElement.appendChild(script);
+            script.remove();
 
-    // To send it back to the content script:
-    window.dispatchEvent(new CustomEvent("myext-data", {
-      detail: { value: window }
-    }));
-  `;
-  document.documentElement.appendChild(script);
-  script.remove();
-}
+            if (message.type === 'injectScript') {
+                window.addEventListener('sar-data-downloaded', () => {
+                    sendResponse({ ok: true });
+                }, { once: true });
+                window.dispatchEvent(new CustomEvent('sar-download-data'));
+            } else {
+                window.addEventListener('sar-data-downloaded', (e) => {
+                    sendResponse({ ok: true, data: (e as CustomEvent).detail });
+                }, { once: true });
+                window.dispatchEvent(new CustomEvent('sar-attach-data'));
+            }
+        });
 
-// Listen for the data sent back from page context
-window.addEventListener("myext-data", (e) => {
-  console.log("Received from page:", e);
+    return true; // keep channel open for async sendResponse
 });
-
-inject();

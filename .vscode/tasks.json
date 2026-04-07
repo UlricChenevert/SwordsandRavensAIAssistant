@@ -59,6 +59,28 @@
         },
       },
       {
+        "label": "Bundle Content Script",
+        "type": "shell",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\bundleContentScript.ps1",
+        "isBackground": false,
+        "presentation":
+        {
+          "reveal": "always",
+          "panel": "dedicated",
+        },
+      },
+      {
+        "label": "Watch Content Script",
+        "type": "shell",
+        "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\watchContentScript.ps1",
+        "isBackground": true,
+        "presentation":
+        {
+          "reveal": "silent",
+          "panel": "dedicated",
+        },
+      },
+      {
         "label": "Watch Downloads for new data",
         "type": "shell",
         "command": "powershell -NoExit -File ${workspaceFolder}\\.Tools\\grabDownloadedFiles.ps1",

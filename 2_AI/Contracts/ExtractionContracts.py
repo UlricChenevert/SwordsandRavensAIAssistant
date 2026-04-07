@@ -93,8 +93,6 @@ class _BattleParticipantLogRequired(TypedDict):
     House: Factions
     OrderBonus: int
     ArmyStrength: int
-    ArmyUnits: List[str]
-    WoundedUnits: List[str]
     SupportStrength: int
     SupportingFactions: List[Factions]
     RefusedSupport: bool
@@ -112,9 +110,13 @@ class BattleParticipantLog(_BattleParticipantLogRequired, total=False):
     Optional fields (may be absent in the JSON):
         OrderType: type of the order token played
         TidesOfBattleCard: tides of battle card used, if any
+        ArmyUnits: units involved in the battle
+        WoundedUnits: units wounded during the battle
     """
     OrderType: str
     TidesOfBattleCard: Optional[str]
+    ArmyUnits: List[str]
+    WoundedUnits: List[str]
 
 
 class CombatLog(TypedDict):
@@ -144,16 +146,18 @@ class CleanHouseSnapshot(TypedDict):
     LandAreaCount: int
 
 
-class ExtractedRoundData(TypedDict):
+class _ExtractedRoundDataRequired(TypedDict):
     HouseSnapshotData: Dict[str, CleanHouseSnapshot]
+    LogIndex: int
+    Round: int
+
+class ExtractedRoundData(_ExtractedRoundDataRequired, total=False):
     OrderTokenChoices: Dict[GameLocation, str]
     UnitLocationSnapshotData: Dict[GameLocation, List[UnitState]]
     IronThroneTrack: List[str]
     FiefdomTrack: List[str]
     KingsCourtThroneTrack: List[str]
     InErrorGame: bool
-    LogIndex: int
-    Round: int
 
 class CleanBiddingData(TypedDict):
     Track: BidTracks

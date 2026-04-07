@@ -30,6 +30,8 @@ load_dotenv()
 @app.post("/")
 @limiter.limit(USAGE_LIMIT)
 def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptResponse]:
+    prompt = ""
+    
     try:
         llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey, max_retries=0)
         
@@ -45,8 +47,7 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
             )
 
     except Exception as e:
-        print(f"An error occurred: {e}\n\n=====================================================\n\n")
-        traceback.print_exc()
+        
 
         error_str = str(e)
         if "API_KEY_INVALID" in error_str or "API key not valid" in error_str:
@@ -57,6 +58,17 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
             error_message = "Gemini API quota exceeded. Please try again later."
         else:
             error_message = f"An error occurred. Please try again later, and please submit an issue at {GITHUB_ISSUES_URL}."
+
+            print(f"An error occurred: {e}\n\n=====================================================\n\n")
+            traceback.print_exc()
+            
+            sanitized = body.model_copy(update={"geminiKey": "***"})
+            print("===================================")
+            print(prompt)
+            print("===================================")
+            print(sanitized)
+
+        print(error_message)
 
         return GeneralResponse(
             body=PromptResponse(reply="", tokenInput=0, tokenOutput=0),

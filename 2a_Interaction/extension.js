@@ -3797,6 +3797,11 @@
     "Flash 2.0 (free)": "gemini-2.0-flash",
     "Pro 2.5": "gemini-2.5-pro"
   };
+  var AIRetrievalType = {
+    "RAG": "rag",
+    // "Few Shot" : "few-shot",
+    "Zero Shot": "zero-shot"
+  };
   var ExtensionModel = class {
     GeminiKey;
     Prompt;
@@ -3810,6 +3815,11 @@
     isLoading;
     AdvancedMode;
     GameData;
+    AttachedContext;
+    TokensIn;
+    TokensOut;
+    AIRetrievalType;
+    RetrievalAmount;
     constructor(GeminiKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
       this.GeminiKey = GeminiKey;
       this.Prompt = Prompt;
@@ -3823,6 +3833,11 @@
       this.isLoading = import_knockout.default.observable(false);
       this.AdvancedMode = import_knockout.default.observable(false);
       this.GameData = import_knockout.default.observable(void 0);
+      this.AttachedContext = import_knockout.default.observable(null);
+      this.TokensIn = import_knockout.default.observable(void 0);
+      this.TokensOut = import_knockout.default.observable(void 0);
+      this.AIRetrievalType = import_knockout.default.observable(AIRetrievalType["RAG"]);
+      this.RetrievalAmount = import_knockout.default.observable(void 0);
       this.RawMode.subscribe((isRawMode) => {
         if (!isRawMode)
           return;
@@ -3833,64 +3848,97 @@
           return;
         this.RawMode(false);
       });
+      this.PromptType.subscribe(() => {
+        this.AttachedContext(null);
+      });
+      this.AIRetrievalType.subscribe((newValue) => {
+        if (newValue != AIRetrievalType["Zero Shot"])
+          return;
+        this.RetrievalAmount(0);
+      });
     }
-    sentPromptToServer() {
-      if (this.RawMode())
-        throw "Unimplemented";
-      if (!this.GeminiKey()) {
-        this.ErrorMessage("Gemini key is empty! No data can be extracted!");
-        return;
-      }
-      if (!this.Prompt()) {
-        this.ErrorMessage("prompt is empty! No data can be extracted!");
-        return;
-      }
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/json"
-        },
-        body: this.convertToJSON()
-      };
+    async sentPromptToServer() {
       this.ErrorMessage(void 0);
       this.Response(void 0);
       this.isLoading(true);
-      console.log(options);
-      fetch(SERVER_URL, { ...options, signal: AbortSignal.timeout(3e4) }).then((response) => response.json()).then((response) => {
-        if (response.metadata?.InError)
-          throw response.metadata.errorMessage ?? "Server returned an error.";
-        return this.Response(response.body?.reply);
-      }).catch((err) => this.ErrorMessage(String(err))).finally(() => {
+      try {
+        let body;
+        if (this.RawMode()) {
+          if (this.RawJSON() === void 0) {
+            this.ErrorMessage("JSON Empty!");
+            return;
+          }
+          body = this.RawJSON();
+        } else {
+          if (!this.GeminiKey()) {
+            this.ErrorMessage("Gemini key is empty! No data can be extracted!");
+            return;
+          }
+          if (!this.Prompt()) {
+            this.ErrorMessage("Prompt is empty! No data can be extracted!");
+            return;
+          }
+          const context = await this.getContext();
+          body = JSON.stringify({
+            "geminiKey": this.GeminiKey() ?? "",
+            "prompt": this.Prompt() ?? "",
+            "context": context,
+            "aiRetrievalType": this.AIRetrievalType(),
+            "adviseRetrievalType": this.PromptType() ?? "other",
+            "retrievalAmount": this.RetrievalAmount() ?? null,
+            "model": this.Model()
+          });
+        }
+        console.log(body);
+        const response = await fetch(SERVER_URL, {
+          method: "POST",
+          headers: { Accept: "*/*", "Content-Type": "application/json" },
+          body,
+          signal: AbortSignal.timeout(3e4)
+        });
+        const json = await response.json();
+        if (json.metadata?.InError)
+          throw json.metadata.errorMessage ?? "Server returned an error.";
+        this.TokensIn(json.body?.tokenInput);
+        this.TokensOut(json.body?.tokenOutput);
+        this.Response(json.body?.reply);
+      } catch (err) {
+        this.ErrorMessage(String(err));
+      } finally {
         this.isLoading(false);
+      }
+    }
+    sendToTab(messageType) {
+      return new Promise((resolve, reject) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          const tabId = tabs[0]?.id;
+          if (tabId == null) {
+            reject(new Error("No active tab found"));
+            return;
+          }
+          chrome.tabs.sendMessage(tabId, { type: messageType }, resolve);
+        });
       });
     }
-    downloadGameData() {
+    async downloadGameData() {
       this.ErrorMessage(void 0);
       this.isLoading(true);
-      const onMessage = (message) => {
-        if (message.type !== "dataDownloaded")
-          return;
-        chrome.runtime.onMessage.removeListener(onMessage);
-        if (message.data)
-          this.GameData(message.data);
-        this.isLoading(false);
-      };
-      chrome.runtime.onMessage.addListener(onMessage);
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const tabId = tabs[0]?.id;
-        if (tabId == null) {
-          this.ErrorMessage("No active tab found");
-          this.isLoading(false);
-          return;
-        }
-        chrome.tabs.sendMessage(tabId, { type: "injectScript" });
-      });
+      try {
+        await this.sendToTab("injectScript");
+      } catch (e) {
+        this.ErrorMessage(String(e));
+      }
+      this.isLoading(false);
     }
-    buildContext() {
-      const data = this.GameData();
-      if (!data)
-        return null;
+    async getContext() {
+      const response = await this.sendToTab("getContext");
+      if (!response?.data)
+        throw new Error("Failed to extract game context.");
+      const context = this.buildContext(response.data);
+      this.AttachedContext(context);
+      return context;
+    }
+    buildContext(data) {
       const latestRound = data.Rounds.at(-1);
       if (!latestRound)
         return null;
@@ -3911,9 +3959,10 @@
       return JSON.stringify({
         "geminiKey": this.GeminiKey() ?? "",
         "prompt": this.Prompt() ?? "",
-        "context": this.buildContext(),
-        "aiRetrievalType": "rag",
+        "context": this.AttachedContext(),
+        "aiRetrievalType": this.AIRetrievalType(),
         "adviseRetrievalType": this.PromptType() ?? "other",
+        "retrievalAmount": this.RetrievalAmount() ?? null,
         "model": this.Model()
       });
     }

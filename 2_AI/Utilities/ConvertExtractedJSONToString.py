@@ -33,23 +33,29 @@ def convertSupportIntoPlainText(participant : BattleParticipantLog):
 
     return support
 
-def convertBattleParticipantLogToPlainText(participant : BattleParticipantLog):
-    armyUnits = " ".join(participant['ArmyUnits'])
-    support = convertSupportIntoPlainText(participant)
+def convertBattleParticipantLogToPlainText(participant: BattleParticipantLog) -> str:
+    army_units  = " ".join(participant.get("ArmyUnits",    []))
+    wounded     = participant.get("WoundedUnits", [])
+    order_type  = participant.get("OrderType",       "used")
+    tides_card  = participant.get("TidesOfBattleCard", "Unknown")
+    support     = convertSupportIntoPlainText(participant)
 
-    orderType = participant.get("OrderType") if (participant.get("OrderType")) is not None else "used"
-    tidesOfBattle = participant.get("TidesOfBattleCard") if (participant.get("OrderType")) is not None else "Unknown"
+    wounded_line = (
+        f"{participant['House']} also has wounded troops: {' '.join(wounded)}"
+        if wounded else ""
+    )
+    vsb_line = "Used the Valyrian Steel Blade" if participant["ValyrianSteelBlade"] != 0 else ""
 
     return f"""
-    {participant["House"]} {orderType} with a bonus of {participant["OrderBonus"]}, {armyUnits}, and the house card {participant['HouseCard']}. 
+    {participant["House"]} {order_type} with a bonus of {participant["OrderBonus"]}, {army_units}, and the house card {participant["HouseCard"]}.
     {support}
-    {f"{participant["House"]} also has the wounded troops f{" ".join(participant["WoundedUnits"])}" if participant["WoundedUnits"].__len__() > 0 else ""}
+    {wounded_line}
     These factors resulted in these scores for {participant["House"]}:
     Army: {participant["ArmyStrength"]}
     Support: {participant["SupportStrength"]}
     House Card: {participant["HouseCardStrength"]}
-    Tides of Battle Card: {tidesOfBattle}
-    {f"Used the Valyrian Steel Blade" if not participant['ValyrianSteelBlade'] == 0 else ""}
+    Tides of Battle Card: {tides_card}
+    {vsb_line}
     Total: {participant["Total"]}
     """
 
@@ -108,25 +114,35 @@ def convertTrackBidToPlainText(trackBid: CleanBiddingData) -> str:
 def convertWildlingBidToPlainText(wildlingBid: WildingTrackData) -> str:
     return f"Faction {wildlingBid['Faction']} bid {wildlingBid['Amount']}"
 
-def convertRoundToPlainText(round : ExtractedRoundData):
-    factionInformation = []
-    for faction in round["HouseSnapshotData"].values():
-        if faction["SupplyTier"] == -1:
-            continue
-        factionInformation.append(convertHouseSnapshotToPlainText(faction))
+def convertTrackToPlainText(name: str, track: list[str] | None) -> str:
+    if not track:
+        return f"{name}: N/A"
+    entries = "\n".join(f"\t\t{i+1}. {house}" for i, house in enumerate(track))
+    return f"{name}:\n{entries}"
+
+def convertRoundToPlainText(round: ExtractedRoundData) -> str:
+    faction_lines = [
+        convertHouseSnapshotToPlainText(faction)
+        for faction in round["HouseSnapshotData"].values()
+        if faction["SupplyTier"] != -1
+    ]
+
+    unit_orders = convertUnitLocationsAndOrdersToPlainText(
+        round.get('UnitLocationSnapshotData', {}),
+        round.get('OrderTokenChoices', {})
+    )
 
     output = f"""
-    Round {round['Round']} Stats: 
+    Round {round['Round']} Stats:
 
-    
-    Fiefdom Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['FiefdomTrack'])])}
-    Kings Court Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['KingsCourtThroneTrack'])])}
-    Iron Throne Track: \n{"\n".join([f"\t\t{i+1}. {house}" for i,house in enumerate(round['IronThroneTrack'])])}
+    {convertTrackToPlainText('Iron Throne Track', round.get('IronThroneTrack'))}
+    {convertTrackToPlainText('Fiefdom Track',     round.get('FiefdomTrack'))}
+    {convertTrackToPlainText('Kings Court Track', round.get('KingsCourtThroneTrack'))}
 
-    {"\n".join(factionInformation)}
+    {"\n".join(faction_lines)}
 
     Unit Locations and Orders:
-    {convertUnitLocationsAndOrdersToPlainText(round['UnitLocationSnapshotData'], round['OrderTokenChoices'])}
+    {unit_orders}
     """
     return output
 
