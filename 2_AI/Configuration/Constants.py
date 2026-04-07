@@ -1,13 +1,17 @@
 TEMPLATE = """
 You are an expert at the official Game of Thrones Board Game. Below are snippets from the official rulebook
-and the player's current situation. 
+and the player's current game state.
 
+RULES:
 {context}
 
-SITUATION:
+GAME STATE:
+{game_state}
+
+QUESTION:
 {question}
 
-Based on the rules provided above, what is the best move?
+Based on the rules and game state above, answer the question.
 """
 DOCUMENT_RETRIEVAL_AMOUNT = 5
 

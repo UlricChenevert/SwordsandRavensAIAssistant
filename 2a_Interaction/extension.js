@@ -3809,6 +3809,7 @@
     Model;
     isLoading;
     AdvancedMode;
+    GameData;
     constructor(GeminiKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
       this.GeminiKey = GeminiKey;
       this.Prompt = Prompt;
@@ -3821,6 +3822,7 @@
       this.Model = Model;
       this.isLoading = import_knockout.default.observable(false);
       this.AdvancedMode = import_knockout.default.observable(false);
+      this.GameData = import_knockout.default.observable(void 0);
       this.RawMode.subscribe((isRawMode) => {
         if (!isRawMode)
           return;
@@ -3847,8 +3849,6 @@
         method: "POST",
         headers: {
           Accept: "*/*",
-          // 'Accept-Encoding': 'gzip, deflate, br',
-          // Connection: 'keep-alive',
           "Content-Type": "application/json"
         },
         body: this.convertToJSON()
@@ -3856,7 +3856,8 @@
       this.ErrorMessage(void 0);
       this.Response(void 0);
       this.isLoading(true);
-      fetch(SERVER_URL, options).then((response) => response.json()).then((response) => {
+      console.log(options);
+      fetch(SERVER_URL, { ...options, signal: AbortSignal.timeout(3e4) }).then((response) => response.json()).then((response) => {
         if (response.metadata?.InError)
           throw response.metadata.errorMessage ?? "Server returned an error.";
         return this.Response(response.body?.reply);
@@ -3865,13 +3866,52 @@
       });
     }
     downloadGameData() {
-      this.ErrorMessage("Unimplemented");
+      this.ErrorMessage(void 0);
+      this.isLoading(true);
+      const onMessage = (message) => {
+        if (message.type !== "dataDownloaded")
+          return;
+        chrome.runtime.onMessage.removeListener(onMessage);
+        if (message.data)
+          this.GameData(message.data);
+        this.isLoading(false);
+      };
+      chrome.runtime.onMessage.addListener(onMessage);
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tabId = tabs[0]?.id;
+        if (tabId == null) {
+          this.ErrorMessage("No active tab found");
+          this.isLoading(false);
+          return;
+        }
+        chrome.tabs.sendMessage(tabId, { type: "injectScript" });
+      });
+    }
+    buildContext() {
+      const data = this.GameData();
+      if (!data)
+        return null;
+      const latestRound = data.Rounds.at(-1);
+      if (!latestRound)
+        return null;
+      const roundLogIndex = latestRound.LogIndex;
+      const base = { gameState: latestRound, players: data.Players };
+      switch (this.PromptType()) {
+        case "track-bid":
+          return { ...base, trackBids: data.TrackBids.filter((b2) => b2.currentGameStateReferenceIndex >= roundLogIndex) };
+        case "wildling-bid":
+          return { ...base, wildlingBids: data.WildlingBids.filter((b2) => b2.currentGameStateReferenceIndex >= roundLogIndex) };
+        case "combat":
+          return { ...base, combat: data.combatLogs.at(-1) ?? null };
+        default:
+          return base;
+      }
     }
     convertToJSON() {
       return JSON.stringify({
         "geminiKey": this.GeminiKey() ?? "",
         "prompt": this.Prompt() ?? "",
-        "context": this.Context() ?? "",
+        "context": this.buildContext(),
         "aiRetrievalType": "rag",
         "adviseRetrievalType": this.PromptType() ?? "other",
         "model": this.Model()

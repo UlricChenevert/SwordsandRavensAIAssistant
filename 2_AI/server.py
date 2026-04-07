@@ -14,12 +14,34 @@ from langchain_classic.chains.combine_documents import create_stuff_documents_ch
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
+
 from langchain_core.output_parsers import StrOutputParser
+from operator import itemgetter
 
 from Configuration.Constants import GITHUB_ISSUES_URL, HOST_IP, PORT, TEMPLATE, USAGE_LIMIT
 
 from Utilities.General import combineTextFragments
+from Utilities.ConvertExtractedJSONToString import (
+    convertRoundToPlainText,
+    convertPlayerToPlainText,
+    convertTrackBidListToPlainText,
+    convertWildlingBidListToPlainText,
+    convertCombatToPlainText,
+)
+from Contracts.RequestContracts import GameContext
+
+def buildGameStateString(context: GameContext) -> str:
+    parts = [
+        f"Players: {convertPlayerToPlainText(context.players)}",
+        convertRoundToPlainText(context.gameState),
+    ]
+    if context.trackBids:
+        parts.append(f"Track Bids:\n{convertTrackBidListToPlainText(context.trackBids)}")
+    if context.wildlingBids:
+        parts.append(f"Wildling Bids:\n{convertWildlingBidListToPlainText(context.wildlingBids)}")
+    if context.combat:
+        parts.append(f"Last Combat:\n{convertCombatToPlainText(context.combat)}")
+    return "\n\n".join(parts)
 
 from Services.LLMService import llmService
 from Services.DatabaseService import databaseRetrieverService
@@ -40,20 +62,27 @@ load_dotenv()
 @limiter.limit(USAGE_LIMIT)
 def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptResponse]:
     try:
-        llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey)
+        llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey, max_retries=0)
 
         promptTemplate = ChatPromptTemplate.from_template(TEMPLATE)
 
         body.aiRetrievalType
 
         rag_chain = (
-            {"context": databaseRetrieverService | combineTextFragments, "question": RunnablePassthrough()}
+            {
+                "context": itemgetter("question") | databaseRetrieverService | combineTextFragments,
+                "game_state": itemgetter("game_state"),
+                "question": itemgetter("question")
+            }
             | promptTemplate
             | llm.invoke
             | StrOutputParser()
         )
 
-        response = rag_chain.invoke(body.prompt + body.context)
+        response = rag_chain.invoke({
+            "question": body.prompt,
+            "game_state": buildGameStateString(body.context) if body.context else "No game state provided."
+        })
 
         return GeneralResponse(
             body=PromptResponse(reply=response, contextUsed=0),
