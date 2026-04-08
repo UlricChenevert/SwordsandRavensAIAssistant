@@ -15,9 +15,9 @@ class AdviseRetrievalType(Enum):
     COMBAT = "combat"
     OTHER = "other"
 
-class GeminiModel(str, Enum):
-    FLASH_2_0 = "gemini-2.0-flash"
-    PRO_2_5   = "gemini-2.5-pro"
+class ChatGPTModel(str, Enum):
+    GPT_4O_MINI = "gpt-4o-mini"
+    GPT_4O      = "gpt-4o"
 
 class GameContext(BaseModel):
     model_config = {"arbitrary_types_allowed": True}
@@ -29,10 +29,10 @@ class GameContext(BaseModel):
     combat: Optional[CombatLog] = None
 
 class PromptRequest(BaseModel):
-    geminiKey: str
+    openaiKey: str
     prompt: str
     retrievalAmount: Optional[int] = None
     context: Optional[GameContext] = None
     aiRetrievalType: AIRetrievalType
     adviseRetrievalType: AdviseRetrievalType
-    model: GeminiModel = GeminiModel.FLASH_2_0
+    model: ChatGPTModel = ChatGPTModel.GPT_4O_MINI

@@ -3807,9 +3807,9 @@
 
   // 2a_Interaction/Contracts/ExtensionModel.js
   var import_knockout = __toESM(require_knockout_latest(), 1);
-  var GeminiModel = {
-    "Flash 2.0 (free)": "gemini-2.0-flash",
-    "Pro 2.5": "gemini-2.5-pro"
+  var ChatGPTModel = {
+    "GPT-4o mini": "gpt-4o-mini",
+    "GPT-4o": "gpt-4o"
   };
   var AIRetrievalType = {
     "RAG": "rag",
@@ -3817,7 +3817,7 @@
     "Zero Shot": "zero-shot"
   };
   var ExtensionModel = class {
-    GeminiKey;
+    OpenAIKey;
     Prompt;
     PromptType;
     RawMode;
@@ -3835,8 +3835,8 @@
     AIRetrievalType;
     RetrievalAmount;
     NoContext;
-    constructor(GeminiKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
-      this.GeminiKey = GeminiKey;
+    constructor(OpenAIKey, Prompt, PromptType, RawMode, RawJSON, ErrorMessage, Context, Response, Model) {
+      this.OpenAIKey = OpenAIKey;
       this.Prompt = Prompt;
       this.PromptType = PromptType;
       this.RawMode = RawMode;
@@ -3886,8 +3886,8 @@
           }
           body = this.RawJSON();
         } else {
-          if (!this.GeminiKey()) {
-            this.ErrorMessage("Gemini key is empty! No data can be extracted!");
+          if (!this.OpenAIKey()) {
+            this.ErrorMessage("OpenAI key is empty! No data can be extracted!");
             return;
           }
           if (!this.Prompt()) {
@@ -3896,7 +3896,7 @@
           }
           const context = this.NoContext() ? null : await this.getContext();
           body = JSON.stringify({
-            "geminiKey": this.GeminiKey() ?? "",
+            "openaiKey": this.OpenAIKey() ?? "",
             "prompt": this.Prompt() ?? "",
             "context": context,
             "aiRetrievalType": this.AIRetrievalType(),
@@ -3915,7 +3915,8 @@
         const json = await response.json();
         if (json.metadata?.InError)
           throw json.metadata.errorMessage ?? "Server returned an error.";
-        DownloadData(response, "output");
+        console.log(response);
+        DownloadData(json, "output");
         this.TokensIn(json.body?.tokenInput);
         this.TokensOut(json.body?.tokenOutput);
         this.Response(json.body?.reply);
@@ -3974,7 +3975,7 @@
     }
     convertToJSON() {
       return JSON.stringify({
-        "geminiKey": this.GeminiKey() ?? "",
+        "openaiKey": this.OpenAIKey() ?? "",
         "prompt": this.Prompt() ?? "",
         "context": this.AttachedContext(),
         "aiRetrievalType": this.AIRetrievalType(),
@@ -6248,7 +6249,7 @@ Please report this to https://github.com/markedjs/marked.`, e) {
       import_knockout2.default.observable(),
       import_knockout2.default.observable(),
       import_knockout2.default.observable(),
-      import_knockout2.default.observable(GeminiModel["Flash 2.0 (free)"])
+      import_knockout2.default.observable(ChatGPTModel["GPT-4o mini"])
     ));
   }
   document.addEventListener("DOMContentLoaded", initialization);

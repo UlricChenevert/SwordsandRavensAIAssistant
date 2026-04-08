@@ -1,4 +1,4 @@
-import { AdviceType, ExtensionModel, GeminiModel } from "./Contracts/ExtensionModel.js";
+import { AdviceType, ExtensionModel, ChatGPTModel } from "./Contracts/ExtensionModel.js";
 import ko from "knockout"
 import KSB from 'knockout-secure-binding';
 import { marked } from 'marked';
@@ -28,7 +28,7 @@ function initialization (this: Document) {
     ko.observable<string | undefined>(),
     ko.observable<string | undefined>(),
     ko.observable<string | undefined>(),
-    ko.observable<typeof GeminiModel[keyof typeof GeminiModel]>(GeminiModel["Flash 2.0 (free)"])
+    ko.observable<typeof ChatGPTModel[keyof typeof ChatGPTModel]>(ChatGPTModel["GPT-4o mini"])
   ))
 
 }

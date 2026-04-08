@@ -2,9 +2,9 @@ import { DownloadData } from "../../0_Extraction/Framework/DownloadData.js"
 import { SERVER_URL } from "../Config/General.js"
 import ko from "knockout"
 
-export const GeminiModel = {
-    "Flash 2.0 (free)": "gemini-2.0-flash",
-    "Pro 2.5":          "gemini-2.5-pro",
+export const ChatGPTModel = {
+    "GPT-4o mini": "gpt-4o-mini",
+    "GPT-4o":      "gpt-4o",
 } as const
 
 export const AdviceType = {
@@ -63,7 +63,7 @@ export class ExtensionModel {
     NoContext: KnockoutObservable<boolean>
 
      constructor (
-        public GeminiKey : KnockoutObservable<string | undefined>,
+        public OpenAIKey : KnockoutObservable<string | undefined>,
         public Prompt : KnockoutObservable<string | undefined>,
         public PromptType : KnockoutObservable<typeof AdviceType[keyof typeof AdviceType] | undefined>,
         public RawMode : KnockoutObservable<boolean | undefined>,
@@ -71,7 +71,7 @@ export class ExtensionModel {
         public ErrorMessage : KnockoutObservable<string | undefined>,
         public Context : KnockoutObservable<string | undefined>,
         public Response : KnockoutObservable<string | undefined>,
-        public Model : KnockoutObservable<typeof GeminiModel[keyof typeof GeminiModel]>,
+        public Model : KnockoutObservable<typeof ChatGPTModel[keyof typeof ChatGPTModel]>,
     ) {
         this.isLoading = ko.observable(false)
         this.AdvancedMode = ko.observable(false)
@@ -116,11 +116,11 @@ export class ExtensionModel {
                 if (this.RawJSON() === undefined) { this.ErrorMessage("JSON Empty!"); return }
                 body = this.RawJSON() as string
             } else {
-                if (!this.GeminiKey()) { this.ErrorMessage("Gemini key is empty! No data can be extracted!"); return }
+                if (!this.OpenAIKey()) { this.ErrorMessage("OpenAI key is empty! No data can be extracted!"); return }
                 if (!this.Prompt()) { this.ErrorMessage("Prompt is empty! No data can be extracted!"); return }
                 const context = this.NoContext() ? null : await this.getContext()
                 body = JSON.stringify({
-                    "geminiKey": this.GeminiKey() ?? "",
+                    "openaiKey": this.OpenAIKey() ?? "",
                     "prompt": this.Prompt() ?? "",
                     "context": context,
                     "aiRetrievalType": this.AIRetrievalType(),
@@ -141,7 +141,8 @@ export class ExtensionModel {
             const json = await response.json()
             if (json.metadata?.InError) throw json.metadata.errorMessage ?? "Server returned an error."
 
-            DownloadData(response, "output")
+            console.log(response)
+            DownloadData(json, "output")
 
             this.TokensIn(json.body?.tokenInput)
             this.TokensOut(json.body?.tokenOutput)
@@ -204,7 +205,7 @@ export class ExtensionModel {
     convertToJSON() {
         return JSON.stringify(
             {
-                "geminiKey": this.GeminiKey() ?? "",
+                "openaiKey": this.OpenAIKey() ?? "",
                 "prompt": this.Prompt() ?? "",
                 "context": this.AttachedContext(),
                 "aiRetrievalType": this.AIRetrievalType(),

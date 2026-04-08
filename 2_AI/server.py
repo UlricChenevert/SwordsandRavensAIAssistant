@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
+from pydantic import SecretStr
 #from google import genai
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -33,8 +34,8 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
     prompt = ""
     
     try:
-        llm = ChatGoogleGenerativeAI(model=body.model, temperature=0, google_api_key=body.geminiKey, max_retries=0)
-        
+        llm = ChatOpenAI(api_key=SecretStr(body.openaiKey), model=body.model, max_retries=0)
+
         prompt = buildPrompts(body.aiRetrievalType, body.prompt, body.context, body.adviseRetrievalType, body.retrievalAmount)
         result = llm.invoke(prompt)
         response = StrOutputParser().invoke(result)
@@ -50,19 +51,19 @@ def home(request: Request, body: PromptRequest) -> GeneralResponse[PromptRespons
         
 
         error_str = repr(e)
-        if "API_KEY_INVALID" in error_str or "API key not valid" in error_str:
-            error_message = "Invalid Gemini API key. Please check your key and try again."
-        elif "PERMISSION_DENIED" in error_str:
-            error_message = "Gemini API key does not have permission to use this model."
-        elif "RESOURCE_EXHAUSTED" in error_str or "quota" in error_str.lower():
-            error_message = "Gemini API quota exceeded. Please try again later."
+        if "AuthenticationError" in error_str or "Incorrect API key" in error_str or "invalid_api_key" in error_str:
+            error_message = "Invalid ChatGPT API key. Please check your key and try again."
+        elif "PermissionDeniedError" in error_str:
+            error_message = "ChatGPT API key does not have permission to use this model."
+        elif "RateLimitError" in error_str or "quota" in error_str.lower():
+            error_message = "ChatGPT API quota exceeded. Please try again later."
         else:
             error_message = f"An error occurred. Please try again later, and please submit an issue at {GITHUB_ISSUES_URL}."
 
             print(f"An error occurred: {e}\n\n=====================================================\n\n")
             traceback.print_exc()
             
-            sanitized = body.model_copy(update={"geminiKey": "***"})
+            sanitized = body.model_copy(update={"openaiKey": "***"})
             print("===================================")
             print(prompt)
             print("===================================")

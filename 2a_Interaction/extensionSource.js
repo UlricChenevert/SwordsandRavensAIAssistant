@@ -1,4 +1,4 @@
-import { ExtensionModel, GeminiModel } from "./Contracts/ExtensionModel.js";
+import { ExtensionModel, ChatGPTModel } from "./Contracts/ExtensionModel.js";
 import ko from "knockout";
 import KSB from 'knockout-secure-binding';
 import { marked } from 'marked';
@@ -16,6 +16,6 @@ ko.bindingHandlers['safeMarkdown'] = {
 };
 function initialization() {
     ko.bindingProvider.instance = new KSB({ attribute: 'data-bind' });
-    ko.applyBindings(new ExtensionModel(ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(GeminiModel["Flash 2.0 (free)"])));
+    ko.applyBindings(new ExtensionModel(ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(), ko.observable(ChatGPTModel["GPT-4o mini"])));
 }
 document.addEventListener("DOMContentLoaded", initialization);

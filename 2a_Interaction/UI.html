@@ -14,9 +14,9 @@
     <form id="Prompt-Form" data-bind="submit: sentPromptToServer, hidden: isLoading">
 
       <div class="field">
-        <label for="gemini-key">Gemini Key</label>
-        <input id="gemini-key" type="text" placeholder="Enter Gemini key…"
-               data-bind="textInput: GeminiKey">
+        <label for="openai-key">OpenAI Key</label>
+        <input id="openai-key" type="text" placeholder="Enter OpenAI key…"
+               data-bind="textInput: OpenAIKey">
       </div>
 
       <div class="field">
@@ -38,8 +38,8 @@
       <div class="field">
         <label for="model">Model</label>
         <select id="model" data-bind="value: Model">
-          <option value="gemini-2.0-flash">Flash 2.0 (free)</option>
-          <option value="gemini-2.5-pro">Pro 2.5</option>
+          <option value="gpt-4o-mini">GPT-4o mini</option>
+          <option value="gpt-4o">GPT-4o</option>
         </select>
       </div>
 

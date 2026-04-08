@@ -1,9 +1,8 @@
-google
 asyncio
 langchain-huggingface
 sentence-transformers
 langchain_text_splitters
-langchain_google_genai
+langchain_openai
 langchain_community
 asyncio
 chromadb
@@ -17,3 +16,4 @@ aiofiles
 requests
 slowapi
 sentence-transformers
+openai
