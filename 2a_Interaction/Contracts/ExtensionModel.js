@@ -1,3 +1,4 @@
+import { DownloadData } from "../../0_Extraction/Framework/DownloadData.js";
 import { SERVER_URL } from "../Config/General.js";
 import ko from "knockout";
 export const GeminiModel = {
@@ -115,6 +116,7 @@ export class ExtensionModel {
             const json = await response.json();
             if (json.metadata?.InError)
                 throw json.metadata.errorMessage ?? "Server returned an error.";
+            DownloadData(response, "output");
             this.TokensIn(json.body?.tokenInput);
             this.TokensOut(json.body?.tokenOutput);
             this.Response(json.body?.reply);

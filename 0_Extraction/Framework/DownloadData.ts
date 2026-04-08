@@ -1,6 +1,7 @@
 export const DownloadData = (data : object, downloadFileBaseName : string, override = false) => {
     // 1. Convert the JavaScript object to a JSON string
     // The 'null, 2' arguments make the JSON "pretty-printed" and readable
+    
     const jsonString = JSON.stringify(data, null, 2);
 
     // 2. Create a Blob with the JSON string and set the MIME type

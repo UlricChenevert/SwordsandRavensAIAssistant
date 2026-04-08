@@ -3788,8 +3788,22 @@
     }
   });
 
+  // 0_Extraction/Framework/DownloadData.js
+  var DownloadData = (data, downloadFileBaseName, override = false) => {
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = downloadFileBaseName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   // 2a_Interaction/Config/General.js
-  var SERVER_URL = "https://got.chenevertsoftwareservices.com/";
+  var SERVER_URL = "http://127.0.0.1:5002/";
 
   // 2a_Interaction/Contracts/ExtensionModel.js
   var import_knockout = __toESM(require_knockout_latest(), 1);
@@ -3901,6 +3915,7 @@
         const json = await response.json();
         if (json.metadata?.InError)
           throw json.metadata.errorMessage ?? "Server returned an error.";
+        DownloadData(response, "output");
         this.TokensIn(json.body?.tokenInput);
         this.TokensOut(json.body?.tokenOutput);
         this.Response(json.body?.reply);
